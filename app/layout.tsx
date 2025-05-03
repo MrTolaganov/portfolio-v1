@@ -13,22 +13,22 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.tulaganov-portfolio.uz"),
+  metadataBase: new URL("https://tulaganovok.vercel.app/"),
   title: "Tulaganov",
   description: "This is a portfolio website created by Otabek Tulaganov.",
   icons: { icon: "/favicon.png" },
   authors: [
-    { name: "Otabek Tulaganov", url: "https://www.tulaganov-portfolio.uz" },
+    { name: "Otabek Tulaganov", url: "https://tulaganovok.vercel.app/" },
   ],
   openGraph: {
     title: "Tulaganov | Portfolio",
     description: "This is a portfolio website created by Otabek Tulaganov.",
     type: "website",
-    url: "https://www.tulaganov-portfolio.uz",
+    url: "https://tulaganovok.vercel.app/",
     locale: "en_US",
     images: "https://i.postimg.cc/XYkbr4pq/Screenshot-2024-12-09-174158.png",
     countryName: "Uzbekistan",
-    siteName: "Tulagnov",
+    siteName: "Tulaganov",
     emails: "tulaganovok04@gmail.com",
   },
 };
