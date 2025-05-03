@@ -159,7 +159,7 @@ export default function DetailedProjectCard({
                 )}
               >
                 {project.views.length}{" "}
-                {project.stars.length > 1 ? "views" : "view"}
+                {project.views.length > 1 ? "views" : "view"}
               </span>
             </div>
           </div>

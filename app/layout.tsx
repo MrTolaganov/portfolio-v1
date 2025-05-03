@@ -26,7 +26,8 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://tulaganovok.vercel.app/",
     locale: "en_US",
-    images: "https://i.postimg.cc/XYkbr4pq/Screenshot-2024-12-09-174158.png",
+    images:
+      "https://gsebcf8sup.ufs.sh/f/SzyWteeJGb1CMsps8nB2a7etWLKqTJfB0uQvpY5h4X3irAC6",
     countryName: "Uzbekistan",
     siteName: "Tulaganov",
     emails: "tulaganovok04@gmail.com",
