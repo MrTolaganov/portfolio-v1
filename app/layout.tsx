@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     { name: "Otabek Tulaganov", url: "https://tulaganovok.vercel.app/" },
   ],
   openGraph: {
-    title: "Tulaganov | Portfolio",
+    title: "Tulaganov",
     description: "This is a portfolio website created by Otabek Tulaganov.",
     type: "website",
     url: "https://tulaganovok.vercel.app/",
