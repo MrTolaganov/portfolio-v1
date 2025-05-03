@@ -46,7 +46,7 @@ export default function HomeSection() {
               </Link>
             </Button>
             <Button asChild variant={"secondary"}>
-              <Link href={"/https://github.com/MrTolaganov"} target={"_blank"}>
+              <Link href={"https://github.com/MrTolaganov"} target={"_blank"}>
                 <Github />
                 Github profile
               </Link>
