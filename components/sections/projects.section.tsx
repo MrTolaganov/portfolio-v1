@@ -47,7 +47,7 @@ export default function ProjectsSection() {
           )}
         </div>
         <div className={"mx-auto my-16"}>
-          <Button asChild>
+          <Button asChild aria-label={"See all projects"}>
             <Link href={"/projects"}>See all projects</Link>
           </Button>
         </div>

@@ -22,30 +22,30 @@ export default function HomeSection() {
           />
         </div>
         <div className="flex flex-col gap-y-2 md:gap-y-4 items-center md:items-start">
-          <h2 className="text-4xl md:text-6xl font-semibold capitalize">
+          <p className="text-4xl md:text-6xl font-semibold capitalize">
             Hi👋{" "}
             {(session?.currentUser?.fullName ?? session?.user?.name)
               ?.split(" ")
               .at(0)}
             ,
-          </h2>
+          </p>
           <div className="flex flex-col text-5xl md:text-7xl font-bold ">
-            <h1>
+            <p>
               I&apos;m <span className={"gradient-foreground"}>Otabek</span>
-            </h1>
+            </p>
             <h1 className={"gradient-foreground"}>Tulaganov</h1>
           </div>
-          <h3 className="font-normal text-3xl md:text-5xl text-muted-foreground">
+          <p className="font-normal text-3xl md:text-5xl text-muted-foreground">
             Web Developer
-          </h3>
+          </p>
           <div className={"flex items-center gap-x-4 mt-4"}>
-            <Button asChild>
+            <Button asChild aria-label={"Download resume"}>
               <Link href="/Resume%20(1).pdf" target={"_blank"}>
                 <Download />
                 Download resume
               </Link>
             </Button>
-            <Button asChild variant={"secondary"}>
+            <Button asChild variant={"secondary"} aria-label={"Github profile"}>
               <Link href={"https://github.com/MrTolaganov"} target={"_blank"}>
                 <Github />
                 Github profile

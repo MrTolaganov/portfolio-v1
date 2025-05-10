@@ -174,7 +174,12 @@ export default function AddProjectForm() {
                   }}
                 />
               )}
-              <Button type={"submit"} className={"w-full"} disabled={isLoading}>
+              <Button
+                type={"submit"}
+                className={"w-full"}
+                disabled={isLoading}
+                aria-label={"Submit"}
+              >
                 Submit
               </Button>
             </form>

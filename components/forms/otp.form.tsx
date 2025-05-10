@@ -144,13 +144,19 @@ export default function OtpForm({
           )}
         />
         <div className={"grid grid-cols-3 gap-x-4"}>
-          <Button type="submit" disabled={isLoading} className={"bg-brand"}>
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className={"bg-brand"}
+            aria-label={"Verify"}
+          >
             Verify
           </Button>
           <Button
             type="button"
             variant={"secondary"}
             disabled={isLoading}
+            aria-label={"Resend"}
             onClick={() => onResend(email)}
           >
             Resend
@@ -160,6 +166,7 @@ export default function OtpForm({
               type="button"
               variant={"outline"}
               disabled={isLoading}
+              aria-label={"Back"}
               onClick={() => setStep("first")}
             >
               Back
@@ -170,6 +177,7 @@ export default function OtpForm({
               type="button"
               variant={"outline"}
               disabled={isLoading}
+              aria-label={"Back"}
               onClick={() => setIsVerifying(false)}
             >
               Back

@@ -91,7 +91,11 @@ Message: ${values.message}`,
             </FormItem>
           )}
         />
-        <Button type={"submit"} disabled={isLoading}>
+        <Button
+          type={"submit"}
+          disabled={isLoading}
+          aria-label={"Send message"}
+        >
           {isLoading ? (
             <>
               <Loader className={"animate-spin"} />

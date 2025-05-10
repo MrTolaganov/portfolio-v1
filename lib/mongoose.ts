@@ -18,7 +18,6 @@ export default async function connectDatabase(): Promise<void> {
 
     await connect(MONGODB_URI!, connectOptions);
     isConnected = true;
-    console.log("MongoDB connection success");
   } catch (e) {
     throw new Error(`MongoDB connection error: ${e}`);
   }

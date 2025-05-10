@@ -26,8 +26,6 @@ import { navItems } from "@/constants";
 export default function Header() {
   const { data: session } = useSession();
 
-  console.log(session);
-
   return (
     <header className={"h-[10vh] fixed inset-0 bg-background z-50"}>
       <div className="size-full flex justify-between items-center px-2 sm:px-4 md:px-8 lg:px-16">
@@ -70,6 +68,7 @@ export default function Header() {
                 <Button
                   size={"sm"}
                   className="w-full bg-transparent border-red-500 text-red-500 hover:text-red-500 hover:bg-transparent"
+                  aria-label={"Sign out"}
                   onClick={() => signOut({ callbackUrl: "/sign-in" })}
                 >
                   Sign out
@@ -83,6 +82,7 @@ export default function Header() {
                 size={"icon"}
                 variant={"outline"}
                 className={"md:hidden border-0"}
+                aria-label={"Menu"}
               >
                 <Menu />
               </Button>

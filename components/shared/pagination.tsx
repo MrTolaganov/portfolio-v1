@@ -31,11 +31,17 @@ export default function Pagination({ page, isNext }: Props) {
         size={"sm"}
         disabled={page === 1}
         onClick={() => onNavigate("prev")}
+        aria-label={"Previous"}
       >
         Previous
       </Button>
       <span>{page}</span>
-      <Button size={"sm"} disabled={!isNext} onClick={() => onNavigate("next")}>
+      <Button
+        size={"sm"}
+        disabled={!isNext}
+        onClick={() => onNavigate("next")}
+        aria-label={"Next"}
+      >
         Next
       </Button>
     </div>

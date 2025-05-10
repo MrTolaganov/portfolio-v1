@@ -10,8 +10,7 @@ export async function getUserByEmail(email?: string): Promise<IUser | null> {
     await connectDatabase();
     const user = await UserModel.findOne({ email: email }).select("-password");
     return JSON.parse(JSON.stringify(user));
-  } catch (e) {
-    console.error(`Error getting user by email: ${e}`);
+  } catch {
     return null;
   }
 }
@@ -23,8 +22,7 @@ export async function createUser(
   try {
     await connectDatabase();
     return (await UserModel.create({ fullName, email })) as IUser;
-  } catch (e) {
-    console.error(`Error creating user with email: ${e}`);
+  } catch {
     return {} as IUser;
   }
 }
@@ -50,9 +48,8 @@ export async function signIn(
 
     if (!correctPassword) return { status: 401, message: "Incorrect password" };
 
-    return { status: 200, message: "You have successfully logged in" };
-  } catch (error) {
-    console.error(`Error with signing in: ${error}`);
+    return { status: 200, message: "You have successfully signed in" };
+  } catch {
     return { status: 500, message: "Something went wrong" };
   }
 }
@@ -77,8 +74,7 @@ export async function signUp(
         status: 400,
         message: "Your have already signed up. Please sign in",
       };
-  } catch (error) {
-    console.error(error);
+  } catch {
     return { status: 500, message: "Something went wrong" };
   }
 }
@@ -96,8 +92,7 @@ export async function updatePassword(
       status: 200,
       message: "Your password has been changed successfully",
     };
-  } catch (e) {
-    console.error(`Error with updating password: ${e}`);
+  } catch {
     return { status: 500, message: "Something went wrong" };
   }
 }

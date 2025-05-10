@@ -44,8 +44,6 @@ export default function EditProjectForm({
 
   const { name, imageUrl, demoUrl, imageKey, techs, githubUrl } = editedProject;
 
-  console.log("Salom");
-
   const editProjectForm = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
     defaultValues: { name, imageUrl, demoUrl, imageKey, techs, githubUrl },
@@ -159,6 +157,7 @@ export default function EditProjectForm({
                     className="absolute top-0 right-0 z-20"
                     disabled={isLoading}
                     onClick={onRemoveImage}
+                    aria-label={"Remove image"}
                   >
                     <X />
                   </Button>
@@ -180,7 +179,12 @@ export default function EditProjectForm({
                   }}
                 />
               )}
-              <Button type={"submit"} className={"w-full"} disabled={isLoading}>
+              <Button
+                type={"submit"}
+                className={"w-full"}
+                disabled={isLoading}
+                aria-label={"Submit"}
+              >
                 Submit
               </Button>
             </form>

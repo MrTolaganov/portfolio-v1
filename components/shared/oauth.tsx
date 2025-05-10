@@ -12,6 +12,7 @@ export default function Oauth() {
         variant={"secondary"}
         className={"text-primary"}
         onClick={() => signIn("github", { callbackUrl: "/" })}
+        aria-label={"Github"}
       >
         <FaGithub /> Github
       </Button>
@@ -19,6 +20,7 @@ export default function Oauth() {
         variant={"secondary"}
         className={"text-primary"}
         onClick={() => signIn("google", { callbackUrl: "/" })}
+        aria-label={"Google"}
       >
         <FaGoogle />
         Google

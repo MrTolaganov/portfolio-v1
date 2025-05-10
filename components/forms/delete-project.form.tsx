@@ -63,10 +63,18 @@ export default function DeleteProjectForm({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={isLoading} onClick={onCloseAlertDialog}>
+          <AlertDialogCancel
+            disabled={isLoading}
+            onClick={onCloseAlertDialog}
+            aria-label={"Cancel"}
+          >
             Cancel
           </AlertDialogCancel>
-          <AlertDialogAction disabled={isLoading} onClick={onDeleteProject}>
+          <AlertDialogAction
+            disabled={isLoading}
+            onClick={onDeleteProject}
+            aria-label={"Continue"}
+          >
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>

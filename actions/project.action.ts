@@ -15,8 +15,7 @@ export async function addProject(
     await ProjectModel.create(project);
     revalidatePath("/projects", "page");
     return { status: 200, message: "Project added successfully." };
-  } catch (e) {
-    console.error(`Error adding project: ${e}`);
+  } catch {
     return { status: 500, message: "Something went wrong" };
   }
 }
@@ -69,8 +68,7 @@ export async function getProjects({
     const isNext = totalProjects > projects.length + skip;
 
     return { projects: JSON.parse(JSON.stringify(projects)), isNext };
-  } catch (e) {
-    console.error(`Error getting projects: ${e}`);
+  } catch {
     return { projects: [], isNext: false };
   }
 }
@@ -80,8 +78,7 @@ export async function getFeaturedProjects(): Promise<IProject[]> {
     await connectDatabase();
     const projects = await ProjectModel.find().sort({ createdAt: -1 }).limit(8);
     return JSON.parse(JSON.stringify(projects));
-  } catch (e) {
-    console.error(`Error getting featured projects: ${e}`);
+  } catch {
     return [];
   }
 }
@@ -95,8 +92,7 @@ export async function editProject(
     await ProjectModel.findByIdAndUpdate(projectId, project);
     revalidatePath("/projects", "page");
     return { status: 200, message: "Project edited successfully." };
-  } catch (e) {
-    console.error(`Error editing project: ${e}`);
+  } catch {
     return { status: 500, message: "Something went wrong" };
   }
 }
@@ -107,8 +103,7 @@ export async function deleteProject(projectId: string): Promise<IResponse> {
     await ProjectModel.findByIdAndDelete(projectId);
     revalidatePath("/projects", "page");
     return { status: 200, message: "Project deleted successfully." };
-  } catch (e) {
-    console.error(`Error deleting project: ${e}`);
+  } catch {
     return { status: 500, message: "Something went wrong" };
   }
 }
@@ -143,8 +138,7 @@ export async function starProject(projectId: string): Promise<IResponse> {
     revalidatePath("/projects", "page");
 
     return { status: 200, message: "Project viewed successfully." };
-  } catch (e) {
-    console.error(`Error staring project: ${e}`);
+  } catch {
     return { status: 500, message: "Something went wrong" };
   }
 }
@@ -175,8 +169,7 @@ export async function viewProject(projectId: string): Promise<IResponse> {
     revalidatePath("/projects", "page");
 
     return { status: 200, message: "Project viewed successfully." };
-  } catch (e) {
-    console.error(`Error adding project: ${e}`);
+  } catch {
     return { status: 500, message: "Something went wrong" };
   }
 }

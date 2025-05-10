@@ -167,6 +167,7 @@ export default function ForgotPassPage() {
                       size={"icon"}
                       variant={"outline"}
                       className={"size-12 bg-secondary"}
+                      aria-label={"Toggle password"}
                       onClick={() => setIsVisiblePassword((prev) => !prev)}
                     >
                       {isVisiblePassword ? <EyeOff /> : <Eye />}
@@ -176,7 +177,12 @@ export default function ForgotPassPage() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className={"w-full"} disabled={isLoading}>
+            <Button
+              type="submit"
+              className={"w-full"}
+              disabled={isLoading}
+              aria-label={"Submit"}
+            >
               {isLoading ? (
                 <>
                   <Loader className={"animate-spin"} />

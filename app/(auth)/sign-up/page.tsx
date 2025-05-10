@@ -100,6 +100,7 @@ export default function SignUpPage() {
                       size={"icon"}
                       variant={"outline"}
                       className={"size-12"}
+                      aria-label={"Toggle password"}
                       onClick={() => setIsVisiblePassword((prev) => !prev)}
                     >
                       {isVisiblePassword ? <EyeOff /> : <Eye />}

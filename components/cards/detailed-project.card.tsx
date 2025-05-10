@@ -93,6 +93,7 @@ export default function DetailedProjectCard({
                 size={"icon"}
                 variant={"secondary"}
                 onClick={onEditProject}
+                aria-label={"Edit"}
               >
                 <Edit2 />
               </Button>
@@ -100,6 +101,7 @@ export default function DetailedProjectCard({
                 size={"icon"}
                 variant={"secondary"}
                 onClick={onDeleteProject}
+                aria-label={"Delete"}
               >
                 <Trash2 className={"text-red-500"} />
               </Button>
@@ -164,7 +166,12 @@ export default function DetailedProjectCard({
             </div>
           </div>
           <div className={"grid grid-cols-2 gap-2 mt-3 p-1"}>
-            <Button size={"sm"} onClick={onViewProject} disabled={isLoading}>
+            <Button
+              size={"sm"}
+              onClick={onViewProject}
+              disabled={isLoading}
+              aria-label={"View"}
+            >
               <Eye /> View
             </Button>
             <Button
@@ -173,6 +180,7 @@ export default function DetailedProjectCard({
               asChild
               disabled={isLoading}
               className={cn(isLoading && "text-muted-foreground")}
+              aria-label={"Source code"}
             >
               <Link href={project.githubUrl} target={"_blank"}>
                 <Github />

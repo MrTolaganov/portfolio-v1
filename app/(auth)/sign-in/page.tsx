@@ -87,6 +87,7 @@ export default function SignInPage() {
                   size={"icon"}
                   variant={"outline"}
                   className={"size-12 bg-secondary"}
+                  aria-label={"Toggle password"}
                   onClick={() => setIsVisiblePassword((prev) => !prev)}
                 >
                   {isVisiblePassword ? <EyeOff /> : <Eye />}
@@ -96,7 +97,12 @@ export default function SignInPage() {
             </FormItem>
           )}
         />
-        <Button type="submit" className={"w-full"} disabled={isLoading}>
+        <Button
+          type="submit"
+          className={"w-full"}
+          disabled={isLoading}
+          aria-label={"Sign in"}
+        >
           {isLoading ? (
             <>
               <Loader className={"animate-spin"} />
