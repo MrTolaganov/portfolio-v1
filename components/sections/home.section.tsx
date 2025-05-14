@@ -40,7 +40,10 @@ export default function HomeSection() {
           </p>
           <div className={"flex items-center gap-x-4 mt-4"}>
             <Button asChild aria-label={"Download resume"}>
-              <Link href="/Resume%20(1).pdf" target={"_blank"}>
+              <Link
+                href="/O. Tulaganov Web Developer resume.pdf (1).pdf"
+                target={"_blank"}
+              >
                 <Download />
                 Download resume
               </Link>
