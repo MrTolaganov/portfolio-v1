@@ -17,7 +17,7 @@ export default function TechsSection() {
         <h2 className={"text-3xl mb-16 font-bold gradient-foreground"}>
           Technologies
         </h2>
-        <Carousel
+        {/* <Carousel
           opts={{ align: "center", loop: true }}
           plugins={[Autoplay({ delay: 2000 })]}
           orientation={"vertical"}
@@ -41,17 +41,17 @@ export default function TechsSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-        </Carousel>
+        </Carousel> */}
         <Carousel
           opts={{ align: "center", loop: true }}
           plugins={[Autoplay({ delay: 2000 })]}
-          className={"w-full max-sm:hidden container"}
+          className={"w-full container"}
         >
           <CarouselContent>
             {techs.map((tech) => (
               <CarouselItem
                 key={tech.image}
-                className={`basis-1/2 md:basis-1/3 lg:basis-1/4`}
+                className={`sm:basis-1/2 md:basis-1/3 lg:basis-1/4`}
               >
                 <div className="p-1">
                   <Card className={"bg-background rounded-0 border-0"}>
