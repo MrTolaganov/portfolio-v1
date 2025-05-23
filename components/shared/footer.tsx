@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-      <p className={"py-4 text-center"}>
+      <p className={"py-6 text-center"}>
         &copy;{" "}
         <Link href={"/"} className={"gradient-foreground underline"}>
           Tulaganov
