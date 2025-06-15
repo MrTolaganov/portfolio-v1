@@ -10,8 +10,13 @@ import {
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import ContactForm from "@/components/forms/contact.form";
+import { Session } from "next-auth";
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  session:Session | null
+}
+
+export default function ContactSection({session}:ContactSectionProps) {
   return (
     <section id="contact">
       <div className="h-screen flex flex-col justify-center md:items-center max-md:px-4">
@@ -24,7 +29,7 @@ export default function ContactSection() {
           </div>
         </h2>
         <div className={"grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32"}>
-          <ContactForm />
+          <ContactForm session={session} />
           <div className="flex flex-col gap-y-4 md:text-xl w-full">
             <Link
               href={"https://t.me/tulaganovok"}

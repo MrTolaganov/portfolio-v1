@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ModeToggle } from "@/components/shared/mode-toggle";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
@@ -22,10 +22,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { navItems } from "@/constants";
+import { Session } from "next-auth";
 
-export default function Header() {
-  const { data: session } = useSession();
+interface HeaderProps {
+  session:Session
+}
 
+export default function Header({session}:HeaderProps) {
   return (
     <header className={"h-[10vh] fixed inset-0 bg-background z-50"}>
       <div className="size-full flex justify-between items-center px-2 sm:px-4 md:px-8 lg:px-16">
@@ -50,17 +53,17 @@ export default function Header() {
             <DropdownMenuTrigger asChild>
               <Avatar>
                 <AvatarFallback className="cursor-pointer font-bold">
-                  {session?.currentUser?.fullName.at(0)?.toUpperCase()}
+                  {session.currentUser?.fullName.at(0)?.toUpperCase()}
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuItem className={"flex flex-col gap-y-1 items-start"}>
                 <p className={"gradient-foreground text-lg"}>
-                  {session?.currentUser?.fullName}
+                  {session.currentUser?.fullName}
                 </p>
                 <p className={"text-muted-foreground text-base"}>
-                  {session?.currentUser?.email}
+                  {session.currentUser?.email}
                 </p>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
