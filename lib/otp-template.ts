@@ -75,5 +75,5 @@ export default function otpTemplate(otp: number) {
 </body>
 </html>
 
-	`;
+	`
 }

@@ -35,7 +35,12 @@ export default function RootLayout({ children }: Readonly<ChildProps>) {
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${montserrat.variable} antialiased custom-scrollbar`}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
           <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
           <Toaster position={'bottom-center'} />
         </ThemeProvider>

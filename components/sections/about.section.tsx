@@ -11,6 +11,7 @@ export default function AboutSection({ session }: AboutSectionProps) {
     <section id={'about'}>
       <div className='h-screen flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32'>
         <h2 className={'text-3xl mb-16 font-bold gradient-foreground'}>About me</h2>
+
         <p className='md:leading-10 text-xl md:text-3xl'>
           Hi {session?.currentUser?.fullName ?? session?.user?.name}, I&apos;m nice to meet you. As
           I introduce myself for you, so my fullname is Otabek Tulaganov. I was born on March 24,

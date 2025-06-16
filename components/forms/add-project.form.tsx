@@ -1,103 +1,90 @@
-"use client";
+'use client'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { projectSchema } from "@/lib/validations";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { UploadDropzone } from "@/lib/uploadthing";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { useState } from "react";
-import { X } from "lucide-react";
-import { toast } from "sonner";
-import { deleteFile } from "@/actions/file.action";
-import { addProject } from "@/actions/project.action";
-import { useOpenAddProjectForm } from "@/hooks/use-add-project";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { projectSchema } from '@/lib/validations'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { UploadDropzone } from '@/lib/uploadthing'
+import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { useState } from 'react'
+import { X } from 'lucide-react'
+import { toast } from 'sonner'
+import { deleteFile } from '@/actions/file.action'
+import { addProject } from '@/actions/project.action'
+import { useOpenAddProjectForm } from '@/hooks/use-add-project'
 
 export default function AddProjectForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const { isOpen, setOpen } = useOpenAddProjectForm();
+  const [isLoading, setIsLoading] = useState(false)
+  const { isOpen, setOpen } = useOpenAddProjectForm()
 
   const addProjectForm = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
-      name: "",
-      imageUrl: "",
-      techs: "",
-      demoUrl: "",
-      githubUrl: "",
+      name: '',
+      imageUrl: '',
+      techs: '',
+      demoUrl: '',
+      githubUrl: '',
     },
-  });
+  })
 
   const onRemoveImage = () => {
-    setIsLoading(true);
-    deleteFile(addProjectForm.getValues("imageKey"))
+    setIsLoading(true)
+
+    deleteFile(addProjectForm.getValues('imageKey'))
       .then(() => {
-        addProjectForm.setValue("imageUrl", "");
-        addProjectForm.setValue("imageKey", "");
+        addProjectForm.setValue('imageUrl', '')
+        addProjectForm.setValue('imageKey', '')
       })
-      .catch(() => toast.error("Something went wrong"))
-      .finally(() => setIsLoading(false));
-  };
+      .catch(() => toast.error('Something went wrong'))
+      .finally(() => setIsLoading(false))
+  }
 
   const onSubmit = async (values: z.infer<typeof projectSchema>) => {
-    if (!values.imageUrl || !values.imageKey) return;
+    if (!values.imageUrl || !values.imageKey) return
 
-    setIsLoading(true);
+    setIsLoading(true)
 
-    const { status, message } = await addProject(values);
+    const { status, message } = await addProject(values)
 
     if (status === 200) {
-      toast.success(message);
-      setOpen(false);
-      addProjectForm.reset();
+      toast.success(message)
+      setOpen(false)
+      addProjectForm.reset()
     } else {
-      toast.error(message);
+      toast.error(message)
     }
 
-    setIsLoading(false);
-  };
+    setIsLoading(false)
+  }
 
   const onOpenChange = () => {
-    setOpen(false);
-    addProjectForm.reset();
-  };
+    setOpen(false)
+    addProjectForm.reset()
+  }
 
   return (
     <>
       <Button onClick={() => setOpen(true)}>Add project</Button>
+
       <Dialog open={isOpen} onOpenChange={onOpenChange}>
         <DialogContent>
-          <DialogTitle className={"gradient-foreground inline text-xl"}>
-            Add project
-          </DialogTitle>
+          <DialogTitle className={'gradient-foreground inline text-xl'}>Add project</DialogTitle>
           <DialogDescription />
+
           <Form {...addProjectForm}>
-            <form
-              onSubmit={addProjectForm.handleSubmit(onSubmit)}
-              className={"space-y-3 mt-4"}
-            >
+            <form onSubmit={addProjectForm.handleSubmit(onSubmit)} className={'space-y-3 mt-4'}>
               <FormField
                 control={addProjectForm.control}
-                name="name"
+                name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={"mb-2"}>Name</Label>
+                    <Label className={'mb-2'}>Name</Label>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -105,12 +92,13 @@ export default function AddProjectForm() {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={addProjectForm.control}
-                name="techs"
+                name='techs'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={"mb-2"}>Technologies</Label>
+                    <Label className={'mb-2'}>Technologies</Label>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -118,12 +106,13 @@ export default function AddProjectForm() {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={addProjectForm.control}
-                name="demoUrl"
+                name='demoUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={"mb-2"}>Demo URL</Label>
+                    <Label className={'mb-2'}>Demo URL</Label>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -131,12 +120,13 @@ export default function AddProjectForm() {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={addProjectForm.control}
-                name="githubUrl"
+                name='githubUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={"mb-2"}>Github URL</Label>
+                    <Label className={'mb-2'}>Github URL</Label>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -144,41 +134,44 @@ export default function AddProjectForm() {
                   </FormItem>
                 )}
               />
-              {addProjectForm.watch("imageUrl") ? (
-                <div className="relative w-full h-[200px] bg-secondary flex justify-center items-center">
+
+              {addProjectForm.watch('imageUrl') ? (
+                <div className='relative w-full h-[200px] bg-secondary flex justify-center items-center'>
                   <Button
-                    type="button"
-                    size={"icon"}
-                    variant={"secondary"}
-                    className="absolute top-0 right-0 z-20"
+                    type='button'
+                    size={'icon'}
+                    variant={'secondary'}
+                    className='absolute top-0 right-0 z-20'
                     disabled={isLoading}
                     onClick={onRemoveImage}
                   >
                     <X />
                   </Button>
+
                   <Image
-                    src={addProjectForm.watch("imageUrl")}
-                    alt="Product image"
+                    src={addProjectForm.watch('imageUrl')}
+                    alt='Product image'
                     fill
-                    className="object-cover"
+                    className='object-cover'
                   />
                 </div>
               ) : (
                 <UploadDropzone
-                  endpoint={"imageUploader"}
-                  config={{ appendOnPaste: true, mode: "auto" }}
+                  endpoint={'imageUploader'}
+                  config={{ appendOnPaste: true, mode: 'auto' }}
                   appearance={{ container: { height: 200, padding: 10 } }}
-                  onClientUploadComplete={(res) => {
-                    addProjectForm.setValue("imageUrl", res[0].ufsUrl);
-                    addProjectForm.setValue("imageKey", res[0].key);
+                  onClientUploadComplete={res => {
+                    addProjectForm.setValue('imageUrl', res[0].ufsUrl)
+                    addProjectForm.setValue('imageKey', res[0].key)
                   }}
                 />
               )}
+              
               <Button
-                type={"submit"}
-                className={"w-full"}
+                type={'submit'}
+                className={'w-full'}
                 disabled={isLoading}
-                aria-label={"Submit"}
+                aria-label={'Submit'}
               >
                 Submit
               </Button>
@@ -187,5 +180,5 @@ export default function AddProjectForm() {
         </DialogContent>
       </Dialog>
     </>
-  );
+  )
 }

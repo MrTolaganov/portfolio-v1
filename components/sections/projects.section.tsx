@@ -29,6 +29,7 @@ export default function ProjectsSection() {
         >
           Projects
         </h2>
+        
         <div
           className={
             "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
@@ -46,6 +47,7 @@ export default function ProjectsSection() {
             <p>No projects found.</p>
           )}
         </div>
+
         <div className={"mx-auto my-16"}>
           <Button asChild aria-label={"See all projects"}>
             <Link href={"/projects"}>See all projects</Link>

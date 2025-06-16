@@ -25,7 +25,14 @@ interface Props {
   setStep?: (step: 'first' | 'second' | 'final') => void
 }
 
-export default function OtpForm({ fullName, email, password, isForgotPassword, setStep, setIsVerifying }: Props) {
+export default function OtpForm({
+  fullName,
+  email,
+  password,
+  isForgotPassword,
+  setStep,
+  setIsVerifying,
+}: Props) {
   const [isLoading, setIsLoading] = useState(false)
 
   const otpForm = useForm<z.infer<typeof otpSchema>>({
@@ -36,7 +43,9 @@ export default function OtpForm({ fullName, email, password, isForgotPassword, s
   const onResend = async (email: string) => {
     try {
       setIsLoading(true)
+
       await sendOtp(email)
+
       toast.success('Verification code resent to your email')
       otpForm.reset({ otp: '' })
     } catch {
@@ -57,6 +66,7 @@ export default function OtpForm({ fullName, email, password, isForgotPassword, s
       } else {
         await signUp(fullName!, email, password!)
         toast.success(message)
+
         await signInWithCredentials('credentials', {
           email,
           password,
@@ -80,6 +90,7 @@ export default function OtpForm({ fullName, email, password, isForgotPassword, s
           </FormControl>
           <FormMessage className={'text-sm'} />
         </FormItem>
+
         <FormField
           control={otpForm.control}
           name='otp'
@@ -87,7 +98,13 @@ export default function OtpForm({ fullName, email, password, isForgotPassword, s
             <FormItem className={'space-y-0'}>
               <Label className={'mb-2'}>Verification code</Label>
               <FormControl>
-                <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS} {...field} className='w-full' disabled={isLoading}>
+                <InputOTP
+                  maxLength={6}
+                  pattern={REGEXP_ONLY_DIGITS}
+                  {...field}
+                  className='w-full'
+                  disabled={isLoading}
+                >
                   <InputOTPGroup className='w-full space-x-2'>
                     <InputOTPSlot index={0} className='w-full h-12 bg-secondary text-lg' />
                     <InputOTPSlot index={1} className='w-full h-12 bg-secondary text-lg' />
@@ -102,10 +119,12 @@ export default function OtpForm({ fullName, email, password, isForgotPassword, s
             </FormItem>
           )}
         />
+
         <div className={'grid grid-cols-3 gap-x-4'}>
           <Button type='submit' disabled={isLoading} aria-label={'Verify'}>
             Verify
           </Button>
+
           <Button
             type='button'
             variant={'secondary'}
@@ -115,6 +134,7 @@ export default function OtpForm({ fullName, email, password, isForgotPassword, s
           >
             Resend
           </Button>
+
           {setStep && (
             <Button
               type='button'
@@ -126,6 +146,7 @@ export default function OtpForm({ fullName, email, password, isForgotPassword, s
               Back
             </Button>
           )}
+          
           {setIsVerifying && (
             <Button
               type='button'

@@ -27,6 +27,7 @@ export default function FeaturedProjectCard({ project }: Props) {
               className={"object-cover"}
             />
           </div>
+
           <div className={"p-1"}>
             <div className={"flex justify-between items-center m-1"}>
               <CardTitle className={"text-lg font-bold"}>
@@ -36,6 +37,7 @@ export default function FeaturedProjectCard({ project }: Props) {
                 {format(project.createdAt, "dd/MM/yyyy")}
               </p>
             </div>
+            
             <CardDescription>
               {project.techs.split(", ").map((tech) => (
                 <Badge key={tech} className={"bg-secondary text-primary m-1"}>

@@ -26,22 +26,20 @@ export default function ContactForm({ session }: ContactFormProps) {
     defaultValues: { message: '' },
   })
 
-  const onSubmit = (values: z.infer<typeof contactFormSchema>) => {
+  const onSubmit = ({ message }: z.infer<typeof contactFormSchema>) => {
     setIsLoading(true)
+
     const telegramBotId = process.env.NEXT_PUBLIC_TETELGRAM_BOT_API!
     const telegramChatId = process.env.NEXT_PUBLIC_TETELGRAM_CHAT_ID!
 
     const promise = fetch(`https://api.telegram.org/bot${telegramBotId}/sendMessage`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'cache-control': 'no-cache',
-      },
+      headers: { 'Content-Type': 'application/json', 'cache-control': 'no-cache' },
       body: JSON.stringify({
         chat_id: telegramChatId,
         text: `Name: ${session?.currentUser?.fullName}
 Email: ${session?.currentUser?.email}
-Message: ${values.message}`,
+Message: ${message}`,
       }),
     })
       .then(() => contactForm.reset())
@@ -63,12 +61,14 @@ Message: ${values.message}`,
             <Input disabled value={session?.currentUser?.fullName ?? ''} />
           </FormControl>
         </FormItem>
+
         <FormItem>
           <Label className={'mb-2'}>Email address</Label>
           <FormControl>
             <Input disabled value={session?.currentUser?.email ?? ''} />
           </FormControl>
         </FormItem>
+
         <FormField
           control={contactForm.control}
           name='message'
@@ -82,6 +82,7 @@ Message: ${values.message}`,
             </FormItem>
           )}
         />
+        
         <Button type={'submit'} disabled={isLoading} aria-label={'Send message'}>
           {isLoading ? (
             <>

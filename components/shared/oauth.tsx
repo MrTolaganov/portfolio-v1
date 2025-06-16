@@ -16,6 +16,7 @@ export default function Oauth() {
       >
         <FaGithub /> Github
       </Button>
+      
       <Button
         variant={"secondary"}
         className={"text-primary"}

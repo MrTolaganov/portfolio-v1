@@ -57,11 +57,13 @@ export default function DeleteProjectForm({
             Are you absolutely sure to want to delete this {deletedProject.name}{" "}
             project?
           </AlertDialogTitle>
+
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
             project and remove your data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
+
         <AlertDialogFooter>
           <AlertDialogCancel
             disabled={isLoading}
@@ -70,6 +72,7 @@ export default function DeleteProjectForm({
           >
             Cancel
           </AlertDialogCancel>
+          
           <AlertDialogAction
             disabled={isLoading}
             onClick={onDeleteProject}

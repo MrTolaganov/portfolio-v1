@@ -1,4 +1,4 @@
-import { model, models, Schema } from "mongoose";
+import { model, models, Schema } from 'mongoose'
 
 const projectSchema = new Schema(
   {
@@ -8,11 +8,11 @@ const projectSchema = new Schema(
     imageKey: { type: String, required: true },
     demoUrl: { type: String, required: true },
     githubUrl: { type: String, required: true },
-    stars: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    views: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    stars: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    views: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   },
-  { timestamps: true },
-);
+  { timestamps: true }
+)
 
-const ProjectModel = models.Project || model("Project", projectSchema);
-export default ProjectModel;
+const ProjectModel = models.Project || model('Project', projectSchema)
+export default ProjectModel
