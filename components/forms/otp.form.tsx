@@ -16,7 +16,7 @@ import { toast } from 'sonner'
 import { signIn as signInWithCredentials } from 'next-auth/react'
 import { signUp } from '@/actions/auth.action'
 
-interface Props {
+interface OtpFormProps {
   fullName?: string
   email: string
   password?: string
@@ -32,7 +32,7 @@ export default function OtpForm({
   isForgotPassword,
   setStep,
   setIsVerifying,
-}: Props) {
+}: OtpFormProps) {
   const [isLoading, setIsLoading] = useState(false)
 
   const otpForm = useForm<z.infer<typeof otpSchema>>({
@@ -55,10 +55,10 @@ export default function OtpForm({
     }
   }
 
-  const onVerifyOtp = async (values: z.infer<typeof otpSchema>) => {
+  const onVerifyOtp = async ({ otp }: z.infer<typeof otpSchema>) => {
     setIsLoading(true)
 
-    const { status, message } = await verifyOtp(email, values.otp)
+    const { status, message } = await verifyOtp(email, otp)
 
     if (status === 200) {
       if (isForgotPassword && setStep) {
@@ -146,7 +146,7 @@ export default function OtpForm({
               Back
             </Button>
           )}
-          
+
           {setIsVerifying && (
             <Button
               type='button'

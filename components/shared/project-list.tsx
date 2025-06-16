@@ -5,10 +5,11 @@ import { useState } from 'react'
 import EditProjectForm from '@/components/forms/edit-project.form'
 import DeleteProjectForm from '@/components/forms/delete-project.form'
 
-interface Props {
+interface ProjectListProps {
   projects: IProject[]
 }
-export default function ProjectList({ projects }: Props) {
+
+export default function ProjectList({ projects }: ProjectListProps) {
   const [editedProject, setEditedProject] = useState<IProject | null>(null)
   const [deletedProject, setDeletedProject] = useState<IProject | null>(null)
 

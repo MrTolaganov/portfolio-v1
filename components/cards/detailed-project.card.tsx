@@ -16,7 +16,7 @@ import Link from 'next/link'
 import { useOpenEditProjectForm } from '@/hooks/use-edit-project'
 import { useOpenDeleteProjectModal } from '@/hooks/use-delete-project'
 
-interface Props {
+interface DetailedProjectCardProps {
   project: IProject
   setEditedProject: (editedProject: IProject) => void
   setDeletedProject: (deletedProject: IProject) => void
@@ -26,7 +26,7 @@ export default function DetailedProjectCard({
   project,
   setEditedProject,
   setDeletedProject,
-}: Props) {
+}: DetailedProjectCardProps) {
   const [isLoading, setIsLoading] = useState(false)
   const { data: session } = useSession()
   const { setOpen } = useOpenEditProjectForm()
@@ -141,7 +141,7 @@ export default function DetailedProjectCard({
               </span>
             </div>
           </div>
-          
+
           <div className={'grid grid-cols-2 gap-2 mt-3 p-1'}>
             <Button size={'sm'} onClick={onViewProject} disabled={isLoading} aria-label={'View'}>
               <Eye /> View

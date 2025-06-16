@@ -19,12 +19,12 @@ import { toast } from 'sonner'
 import { editProject } from '@/actions/project.action'
 import { IProject } from '@/types'
 
-interface Props {
+interface EditProjectFormProps {
   editedProject: IProject
   setEditedProject: (project: IProject | null) => void
 }
 
-export default function EditProjectForm({ editedProject, setEditedProject }: Props) {
+export default function EditProjectForm({ editedProject, setEditedProject }: EditProjectFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const { isOpen, setOpen } = useOpenEditProjectForm()
 
@@ -151,7 +151,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Pro
                   >
                     <X />
                   </Button>
-                  
+
                   <Image
                     src={editProjectForm.watch('imageUrl')}
                     alt='Product image'

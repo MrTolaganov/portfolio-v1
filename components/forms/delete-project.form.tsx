@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   AlertDialog,
@@ -9,58 +9,57 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { useState } from "react";
-import { deleteProject } from "@/actions/project.action";
-import { toast } from "sonner";
-import { IProject } from "@/types";
-import { useOpenDeleteProjectModal } from "@/hooks/use-delete-project";
+} from '@/components/ui/alert-dialog'
+import { useState } from 'react'
+import { deleteProject } from '@/actions/project.action'
+import { toast } from 'sonner'
+import { IProject } from '@/types'
+import { useOpenDeleteProjectModal } from '@/hooks/use-delete-project'
 
-interface Props {
-  deletedProject: IProject;
-  setDeletedProject: (deletedProject: IProject | null) => void;
+interface DeleteProjectFormProps {
+  deletedProject: IProject
+  setDeletedProject: (deletedProject: IProject | null) => void
 }
 
 export default function DeleteProjectForm({
   deletedProject,
   setDeletedProject,
-}: Props) {
-  const [isLoading, setIsLoading] = useState(false);
-  const { isOpen, setIsOpen } = useOpenDeleteProjectModal();
+}: DeleteProjectFormProps) {
+  const [isLoading, setIsLoading] = useState(false)
+  const { isOpen, setIsOpen } = useOpenDeleteProjectModal()
 
   const onDeleteProject = async () => {
-    setIsLoading(true);
+    setIsLoading(true)
 
-    const { status, message } = await deleteProject(deletedProject._id);
+    const { status, message } = await deleteProject(deletedProject._id)
 
     if (status === 200) {
-      toast.success(message);
+      toast.success(message)
     } else {
-      toast.error(message);
+      toast.error(message)
     }
 
-    setIsLoading(false);
-    setIsOpen(false);
-    setDeletedProject(null);
-  };
+    setIsLoading(false)
+    setIsOpen(false)
+    setDeletedProject(null)
+  }
 
   const onCloseAlertDialog = () => {
-    setIsOpen(false);
-    setDeletedProject(null);
-  };
+    setIsOpen(false)
+    setDeletedProject(null)
+  }
 
   return (
     <AlertDialog open={isOpen} onOpenChange={onCloseAlertDialog}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Are you absolutely sure to want to delete this {deletedProject.name}{" "}
-            project?
+            Are you absolutely sure to want to delete this {deletedProject.name} project?
           </AlertDialogTitle>
 
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            project and remove your data from our servers.
+            This action cannot be undone. This will permanently delete your project and remove your
+            data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
 
@@ -68,20 +67,16 @@ export default function DeleteProjectForm({
           <AlertDialogCancel
             disabled={isLoading}
             onClick={onCloseAlertDialog}
-            aria-label={"Cancel"}
+            aria-label={'Cancel'}
           >
             Cancel
           </AlertDialogCancel>
-          
-          <AlertDialogAction
-            disabled={isLoading}
-            onClick={onDeleteProject}
-            aria-label={"Continue"}
-          >
+
+          <AlertDialogAction disabled={isLoading} onClick={onDeleteProject} aria-label={'Continue'}>
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
+  )
 }

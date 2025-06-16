@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/button'
 import { addUrlQuery } from '@/lib/utils'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-interface Props {
+interface PaginationProps {
   page: number
   isNext: boolean
 }
 
-export default function Pagination({ page, isNext }: Props) {
+export default function Pagination({ page, isNext }: PaginationProps) {
   const searchParams = useSearchParams()
   const router = useRouter()
 

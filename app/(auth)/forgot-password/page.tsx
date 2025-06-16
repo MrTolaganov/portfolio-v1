@@ -40,8 +40,8 @@ export default function ForgotPassPage() {
 
     if (user) {
       await sendOtp(values.email.trim())
-      toast.success('Verification code sent to your email')
       setStep('second')
+      toast.success('Verification code sent to your email')
     } else {
       toast.error('You have not signed up yet, Please sign up first')
     }
@@ -49,17 +49,18 @@ export default function ForgotPassPage() {
     setIsLoading(false)
   }
 
-  const onUpdatePassword = async (values: z.infer<typeof forgotPasswordSchema>) => {
+  const onUpdatePassword = async ({ confirmPassword }: z.infer<typeof forgotPasswordSchema>) => {
     setIsLoading(true)
 
     const { status, message } = await updatePassword(
       emailForm.watch('email').trim(),
-      values.confirmPassword.trim()
+      confirmPassword.trim()
     )
 
     if (status === 200) {
-      toast.success(message)
       router.push('/sign-in')
+
+      toast.success(message)
     } else {
       toast.error(message)
     }
@@ -184,7 +185,7 @@ export default function ForgotPassPage() {
           </form>
         </Form>
       )}
-      
+
       <div className={'text-sm space-x-2'}>
         <span className={'text-muted-foreground'}>Don&apos;t have an account?</span>
         <Link href={'/sign-up'} className={'underline'}>

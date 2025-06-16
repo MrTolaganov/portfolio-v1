@@ -48,12 +48,7 @@ export async function getProjects({
     // Aggregation pipeline to support sorting by array length (stars/views)
     const pipeline = [
       { $match: searchFilter },
-      {
-        $addFields: {
-          starsCount: { $size: '$stars' },
-          viewsCount: { $size: '$views' },
-        },
-      },
+      { $addFields: { starsCount: { $size: '$stars' }, viewsCount: { $size: '$views' } } },
       { $sort: sort },
       { $skip: skip },
       { $limit: pageSize },
@@ -74,7 +69,9 @@ export async function getProjects({
 export async function getFeaturedProjects(): Promise<IProject[]> {
   try {
     await connectDatabase()
+
     const projects = await ProjectModel.find().sort({ createdAt: -1 }).limit(8)
+
     return JSON.parse(JSON.stringify(projects))
   } catch {
     return []
@@ -88,7 +85,9 @@ export async function editProject(
   try {
     await connectDatabase()
     await ProjectModel.findByIdAndUpdate(projectId, project)
+
     revalidatePath('/projects', 'page')
+
     return { status: 200, message: 'Project edited successfully.' }
   } catch {
     return { status: 500, message: 'Something went wrong' }
@@ -99,7 +98,9 @@ export async function deleteProject(projectId: string): Promise<IResponse> {
   try {
     await connectDatabase()
     await ProjectModel.findByIdAndDelete(projectId)
+
     revalidatePath('/projects', 'page')
+
     return { status: 200, message: 'Project deleted successfully.' }
   } catch {
     return { status: 500, message: 'Something went wrong' }
@@ -111,9 +112,7 @@ export async function starProject(projectId: string): Promise<IResponse> {
     await connectDatabase()
 
     const session = await getServerSession(nextAuthOptions)
-
     const project = await ProjectModel.findById(projectId)
-
     let starred: boolean = false
 
     for (const star of project.stars) {
