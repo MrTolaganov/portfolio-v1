@@ -6,8 +6,14 @@ import { z } from 'zod'
 import { projectSchema } from '@/lib/validations'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { Label } from '@/components/ui/label'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { X } from 'lucide-react'
 import Image from 'next/image'
@@ -87,7 +93,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Edi
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={'mb-2'}>Name</Label>
+                    <FormLabel className={'mb-2'}>Name</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -101,7 +107,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Edi
                 name='techs'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={'mb-2'}>Technologies</Label>
+                    <FormLabel className={'mb-2'}>Technologies</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -115,7 +121,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Edi
                 name='demoUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={'mb-2'}>Demo URL</Label>
+                    <FormLabel className={'mb-2'}>Demo URL</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -129,7 +135,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Edi
                 name='githubUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={'mb-2'}>Github URL</Label>
+                    <FormLabel className={'mb-2'}>Github URL</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>

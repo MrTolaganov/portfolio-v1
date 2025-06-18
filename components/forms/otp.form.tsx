@@ -4,8 +4,14 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { otpSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { Label } from '../ui/label'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '../ui/input'
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
 import { REGEXP_ONLY_DIGITS } from 'input-otp'
@@ -84,7 +90,7 @@ export default function OtpForm({
     <Form {...otpForm}>
       <form onSubmit={otpForm.handleSubmit(onVerifyOtp)} className='space-y-3'>
         <FormItem className={'space-y-0'}>
-          <Label className={'mb-2'}>Email address</Label>
+          <FormLabel className={'mb-2'}>Email address</FormLabel>
           <FormControl>
             <Input type='email' value={email} disabled />
           </FormControl>
@@ -96,7 +102,7 @@ export default function OtpForm({
           name='otp'
           render={({ field }) => (
             <FormItem className={'space-y-0'}>
-              <Label className={'mb-2'}>Verification code</Label>
+              <FormLabel className={'mb-2'}>Verification code</FormLabel>
               <FormControl>
                 <InputOTP
                   maxLength={6}

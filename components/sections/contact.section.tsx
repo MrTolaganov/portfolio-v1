@@ -23,7 +23,7 @@ export default function ContactSection({ session }: ContactSectionProps) {
           </div>
         </h2>
 
-        <div className={'grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32'}>
+        <div className={'grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-48 lg:gap-64'}>
           <ContactForm session={session} />
 
           <div className='flex flex-col gap-y-4 md:text-xl w-full'>

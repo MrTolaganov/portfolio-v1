@@ -5,8 +5,14 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { projectSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { Label } from '@/components/ui/label'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { UploadDropzone } from '@/lib/uploadthing'
 import { Button } from '@/components/ui/button'
@@ -70,7 +76,9 @@ export default function AddProjectForm() {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} aria-label='Add project'>Add project</Button>
+      <Button onClick={() => setOpen(true)} aria-label='Add project'>
+        Add project
+      </Button>
 
       <Dialog open={isOpen} onOpenChange={onOpenChange}>
         <DialogContent>
@@ -84,7 +92,7 @@ export default function AddProjectForm() {
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={'mb-2'}>Name</Label>
+                    <FormLabel className={'mb-2'}>Name</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -98,7 +106,7 @@ export default function AddProjectForm() {
                 name='techs'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={'mb-2'}>Technologies</Label>
+                    <FormLabel className={'mb-2'}>Technologies</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -112,7 +120,7 @@ export default function AddProjectForm() {
                 name='demoUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={'mb-2'}>Demo URL</Label>
+                    <FormLabel className={'mb-2'}>Demo URL</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -126,7 +134,7 @@ export default function AddProjectForm() {
                 name='githubUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <Label className={'mb-2'}>Github URL</Label>
+                    <FormLabel className={'mb-2'}>Github URL</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -167,7 +175,7 @@ export default function AddProjectForm() {
                   }}
                 />
               )}
-              
+
               <Button
                 type={'submit'}
                 className={'w-full'}

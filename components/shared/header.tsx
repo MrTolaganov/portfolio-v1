@@ -53,7 +53,7 @@ export default function Header({ session }: HeaderProps) {
           <ModeToggle />
 
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger asChild aria-label='User'>
               <Avatar>
                 <AvatarFallback className='cursor-pointer font-bold'>
                   {session.currentUser?.fullName.at(0)?.toUpperCase()}

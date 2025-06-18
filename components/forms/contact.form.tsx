@@ -4,8 +4,14 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { contactFormSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { Label } from '@/components/ui/label'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
@@ -56,14 +62,14 @@ Message: ${message}`,
     <Form {...contactForm}>
       <form onSubmit={contactForm.handleSubmit(onSubmit)} className={'space-y-3'}>
         <FormItem>
-          <Label className={'mb-2'}>Full name</Label>
+          <FormLabel className={'mb-2'}>Full name</FormLabel>
           <FormControl>
             <Input disabled value={session?.currentUser?.fullName ?? ''} />
           </FormControl>
         </FormItem>
 
         <FormItem>
-          <Label className={'mb-2'}>Email address</Label>
+          <FormLabel className={'mb-2'}>Email address</FormLabel>
           <FormControl>
             <Input disabled value={session?.currentUser?.email ?? ''} />
           </FormControl>
@@ -74,7 +80,7 @@ Message: ${message}`,
           name='message'
           render={({ field }) => (
             <FormItem>
-              <Label className={'mb-2'}>Message</Label>
+              <FormLabel className={'mb-2'}>Message</FormLabel>
               <FormControl>
                 <Textarea {...field} disabled={isLoading} />
               </FormControl>
@@ -82,7 +88,7 @@ Message: ${message}`,
             </FormItem>
           )}
         />
-        
+
         <Button type={'submit'} disabled={isLoading} aria-label={'Send message'}>
           {isLoading ? (
             <>

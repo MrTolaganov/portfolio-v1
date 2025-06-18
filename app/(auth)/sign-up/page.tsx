@@ -4,8 +4,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { signUpSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { Label } from '@/components/ui/label'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -53,7 +52,7 @@ export default function SignUpPage() {
               name='fullName'
               render={({ field }) => (
                 <FormItem>
-                  <Label className={'mb-2'}>Full name</Label>
+                  <FormLabel className={'mb-2'}>Full name</FormLabel>
                   <FormControl>
                     <Input type={'text'} {...field} disabled={isLoading} />
                   </FormControl>
@@ -67,7 +66,7 @@ export default function SignUpPage() {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <Label className={'mb-2'}>Email address</Label>
+                  <FormLabel className={'mb-2'}>Email address</FormLabel>
                   <FormControl>
                     <Input type={'email'} {...field} disabled={isLoading} />
                   </FormControl>
@@ -81,7 +80,7 @@ export default function SignUpPage() {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <Label className={'mb-2'}>Password</Label>
+                  <FormLabel className={'mb-2'}>Password</FormLabel>
                   <div className={'flex items-center'}>
                     <FormControl>
                       <Input

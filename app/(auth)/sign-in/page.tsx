@@ -4,10 +4,16 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { signInSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import Link from 'next/link'
 import { signIn } from '@/actions/auth.action'
 import { useState } from 'react'
@@ -52,7 +58,7 @@ export default function SignInPage() {
           name='email'
           render={({ field }) => (
             <FormItem>
-              <Label className={'mb-2'}>Email address</Label>
+              <FormLabel className={'mb-2'}>Email address</FormLabel>
               <FormControl>
                 <Input type={'email'} {...field} disabled={isLoading} />
               </FormControl>
@@ -66,7 +72,7 @@ export default function SignInPage() {
           name='password'
           render={({ field }) => (
             <FormItem>
-              <Label className={'mb-2'}>Password</Label>
+              <FormLabel className={'mb-2'}>Password</FormLabel>
               <div className={'flex items-center'}>
                 <FormControl>
                   <Input
@@ -101,7 +107,7 @@ export default function SignInPage() {
             'Sign in'
           )}
         </Button>
-        
+
         <div className={'text-sm space-x-2'}>
           <span className={'text-muted-foreground'}>Don&apos;t have an account?</span>
           <Link href={'/sign-up'} className={'underline'}>

@@ -8,8 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getUserByEmail, updatePassword } from '@/actions/auth.action'
 import { sendOtp } from '@/actions/mail.action'
 import { toast } from 'sonner'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
-import { Label } from '@/components/ui/label'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -78,7 +77,7 @@ export default function ForgotPassPage() {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <Label className={'mb-2'}>Email</Label>
+                  <FormLabel className={'mb-2'}>Email</FormLabel>
                   <FormControl>
                     <Input {...field} disabled={isLoading} />
                   </FormControl>
@@ -116,7 +115,7 @@ export default function ForgotPassPage() {
               name='newPassword'
               render={({ field }) => (
                 <FormItem>
-                  <Label className={'mb-2'}>New password</Label>
+                  <FormLabel className={'mb-2'}>New password</FormLabel>
                   <div className={'flex items-center'}>
                     <FormControl>
                       <Input
@@ -147,7 +146,7 @@ export default function ForgotPassPage() {
               name='confirmPassword'
               render={({ field }) => (
                 <FormItem>
-                  <Label className={'mb-2'}>Confirm password</Label>
+                  <FormLabel className={'mb-2'}>Confirm password</FormLabel>
                   <div className={'flex items-center'}>
                     <FormControl>
                       <Input
