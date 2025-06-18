@@ -70,7 +70,7 @@ export default function AddProjectForm() {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Add project</Button>
+      <Button onClick={() => setOpen(true)} aria-label='Add project'>Add project</Button>
 
       <Dialog open={isOpen} onOpenChange={onOpenChange}>
         <DialogContent>
@@ -144,6 +144,7 @@ export default function AddProjectForm() {
                     className='absolute top-0 right-0 z-20'
                     disabled={isLoading}
                     onClick={onRemoveImage}
+                    aria-label='Remove image'
                   >
                     <X />
                   </Button>

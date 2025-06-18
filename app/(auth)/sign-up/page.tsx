@@ -95,7 +95,7 @@ export default function SignUpPage() {
                       size={'icon'}
                       variant={'outline'}
                       className={'size-12'}
-                      aria-label={'Toggle password'}
+                      aria-label={'Show or hide password'}
                       onClick={() => setIsVisiblePassword(prev => !prev)}
                     >
                       {isVisiblePassword ? <EyeOff /> : <Eye />}
@@ -106,7 +106,7 @@ export default function SignUpPage() {
               )}
             />
 
-            <Button type='submit' className={'w-full'} disabled={isLoading}>
+            <Button type='submit' className={'w-full'} disabled={isLoading} aria-label='Loading...'>
               {isLoading ? (
                 <>
                   <Loader className={'animate-spin'} />

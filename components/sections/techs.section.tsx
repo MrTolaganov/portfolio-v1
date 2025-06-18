@@ -9,7 +9,7 @@ import { techs } from '@/constants'
 export default function TechsSection() {
   return (
     <section id={'techs'}>
-      <div className='h-screen flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32'>
+      <div className='min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32'>
         <h2 className={'text-3xl mb-16 font-bold gradient-foreground'}>Technologies</h2>
         
         <Carousel

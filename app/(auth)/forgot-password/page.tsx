@@ -87,7 +87,7 @@ export default function ForgotPassPage() {
               )}
             />
 
-            <Button type='submit' className={'w-full'} disabled={isLoading}>
+            <Button type='submit' className={'w-full'} disabled={isLoading} aria-label='Send email'>
               {isLoading ? (
                 <>
                   <Loader className={'animate-spin'} />
@@ -132,6 +132,7 @@ export default function ForgotPassPage() {
                       variant={'outline'}
                       className={'size-12 bg-secondary'}
                       onClick={() => setIsVisiblePassword(prev => !prev)}
+                      aria-label='Show or hide password'
                     >
                       {isVisiblePassword ? <EyeOff /> : <Eye />}
                     </Button>

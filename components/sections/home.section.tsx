@@ -12,8 +12,7 @@ interface HomeSectionProps {
 
 export default function HomeSection({ session }: HomeSectionProps) {
   return (
-    <section>
-      <div className='h-[90vh] flex flex-col md:flex-row-reverse justify-center items-center md:gap-x-32 gap-y-4'>
+      <section className='min-h-screen max-sm:mt-8 flex flex-col md:flex-row-reverse justify-center items-center md:gap-x-32 gap-y-4'>
         <div className='bg-primary rounded-full'>
           <Image
             src={'/avatar.jpg'}
@@ -40,12 +39,15 @@ export default function HomeSection({ session }: HomeSectionProps) {
 
           <div className={'flex items-center gap-x-4 mt-4'}>
             <Button asChild aria-label={'Download resume'}>
-              <Link href='/O. Tulaganov Web Developer resume.pdf (1).pdf' target={'_blank'}>
+              <Link
+                href='https://gsebcf8sup.ufs.sh/f/SzyWteeJGb1CdYb22A1C7NJOQzeZmBu05IpYgT8HV4KlSEG2'
+                target={'_blank'}
+              >
                 <Download />
                 Download resume
               </Link>
             </Button>
-            
+
             <Button asChild variant={'secondary'} aria-label={'Github profile'}>
               <Link href={'https://github.com/MrTolaganov'} target={'_blank'}>
                 <Github />
@@ -54,7 +56,6 @@ export default function HomeSection({ session }: HomeSectionProps) {
             </Button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   )
 }

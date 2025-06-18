@@ -13,7 +13,7 @@ export default async function RootLayout({ children }: ChildProps) {
   return (
     <div>
       <Header session={session} />
-      <main className={'mt-[10vh]'}>{children}</main>
+      <main>{children}</main>
       <Footer />
     </div>
   )

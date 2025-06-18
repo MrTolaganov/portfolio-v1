@@ -30,7 +30,7 @@ interface HeaderProps {
 
 export default function Header({ session }: HeaderProps) {
   return (
-    <header className={'h-[10vh] fixed inset-0 bg-background z-50'}>
+    <header className={'h-20 fixed inset-0 bg-background z-50'}>
       <div className='size-full flex justify-between items-center px-2 sm:px-4 md:px-8 lg:px-16'>
         <Link href='/' className={'text-3xl font-bold gradient-foreground'}>
           Tulaganov

@@ -14,7 +14,7 @@ interface ContactSectionProps {
 export default function ContactSection({ session }: ContactSectionProps) {
   return (
     <section id='contact'>
-      <div className='h-screen flex flex-col justify-center md:items-center max-md:px-4'>
+      <div className='min-h-screen flex flex-col justify-center md:items-center max-md:px-4'>
         <h2 className={'text-3xl mb-16 font-bold gradient-foreground'}>
           <span className={'max-md:hidden'}>Contact me</span>
 

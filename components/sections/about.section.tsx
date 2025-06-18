@@ -9,7 +9,7 @@ interface AboutSectionProps {
 export default function AboutSection({ session }: AboutSectionProps) {
   return (
     <section id={'about'}>
-      <div className='h-screen flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32'>
+      <div className='min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 lg:px-32'>
         <h2 className={'text-3xl mb-16 font-bold gradient-foreground'}>About me</h2>
 
         <p className='md:leading-10 text-xl md:text-3xl'>
