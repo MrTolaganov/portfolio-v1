@@ -13,13 +13,13 @@ interface HomeSectionProps {
 export default function HomeSection({ session }: HomeSectionProps) {
   return (
       <section className='min-h-screen max-sm:mt-8 flex flex-col md:flex-row-reverse justify-center items-center md:gap-x-32 gap-y-4'>
-        <div className='bg-primary rounded-full'>
+        <div className='bg-secondary rounded-full'>
           <Image
             src={'/avatar.jpg'}
             alt='my-image'
             width={350}
             height={350}
-            className='rounded-full p-1'
+            className='rounded-full'
           />
         </div>
 

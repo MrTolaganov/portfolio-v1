@@ -53,9 +53,9 @@ export default function Header({ session }: HeaderProps) {
           <ModeToggle />
 
           <DropdownMenu>
-            <DropdownMenuTrigger asChild aria-label='User'>
-              <Avatar>
-                <AvatarFallback className='cursor-pointer font-bold'>
+            <DropdownMenuTrigger asChild>
+              <Avatar role='button'>
+                <AvatarFallback aria-label='Avatar' className='cursor-pointer font-bold'>
                   {session.currentUser?.fullName.at(0)?.toUpperCase()}
                 </AvatarFallback>
               </Avatar>

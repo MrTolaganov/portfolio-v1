@@ -12,6 +12,7 @@ function Avatar({
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
+      aria-label="Avatar"
       className={cn(
         "relative flex size-9 shrink-0 overflow-hidden rounded-full",
         className,
