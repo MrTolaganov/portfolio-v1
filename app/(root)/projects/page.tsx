@@ -27,7 +27,7 @@ export default async function ProjectsPage(params: Params) {
   })
 
   return (
-    <div className={'px-4 sm:px-8 md:px-16 lg:px-32 min-h-[82vh] mb-8'}>
+    <div className={'mt-20 px-4 sm:px-8 md:px-16 lg:px-32 min-h-[82vh] mb-8'}>
       <Filter />
       <ProjectList projects={projects} />
       <Pagination page={+searchParams.page! || 1} isNext={isNext} />

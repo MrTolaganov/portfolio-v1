@@ -5,6 +5,7 @@ import { ChildProps } from '@/types'
 import { ThemeProvider } from '@/components/providers/theme.provider'
 import { Toaster } from '@/components/ui/sonner'
 import NextAuthSessionProvider from '@/components/providers/session.provider'
+import TopLoader from '@/components/shared/top-loader'
 
 const montserrat = Montserrat({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -41,7 +42,10 @@ export default function RootLayout({ children }: Readonly<ChildProps>) {
           enableSystem
           disableTransitionOnChange
         >
-          <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
+          <NextAuthSessionProvider>
+            <TopLoader/>
+            {children}
+          </NextAuthSessionProvider>
           <Toaster position={'bottom-center'} />
         </ThemeProvider>
       </body>
