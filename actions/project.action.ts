@@ -107,7 +107,7 @@ export async function deleteProject(projectId: string): Promise<IResponse> {
   }
 }
 
-export async function starProject(projectId: string): Promise<IResponse> {
+export async function starProject(projectId: string, path:string): Promise<IResponse> {
   try {
     await connectDatabase()
 
@@ -132,7 +132,7 @@ export async function starProject(projectId: string): Promise<IResponse> {
       })
     }
 
-    revalidatePath('/projects', 'page')
+    revalidatePath(path, 'page')
 
     return { status: 200, message: 'Project viewed successfully.' }
   } catch {
@@ -140,7 +140,7 @@ export async function starProject(projectId: string): Promise<IResponse> {
   }
 }
 
-export async function viewProject(projectId: string): Promise<IResponse> {
+export async function viewProject(projectId: string, path:string): Promise<IResponse> {
   try {
     await connectDatabase()
 
@@ -163,7 +163,7 @@ export async function viewProject(projectId: string): Promise<IResponse> {
       })
     }
 
-    revalidatePath('/projects', 'page')
+    revalidatePath(path, 'page')
 
     return { status: 200, message: 'Project viewed successfully.' }
   } catch {

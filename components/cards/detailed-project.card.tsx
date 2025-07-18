@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { useOpenEditProjectForm } from '@/hooks/use-edit-project'
 import { useOpenDeleteProjectModal } from '@/hooks/use-delete-project'
+import { usePathname } from 'next/navigation'
 
 interface DetailedProjectCardProps {
   project: IProject
@@ -31,6 +32,7 @@ export default function DetailedProjectCard({
   const { data: session } = useSession()
   const { setOpen } = useOpenEditProjectForm()
   const { setIsOpen } = useOpenDeleteProjectModal()
+  const pathname = usePathname()
 
   const starred = project.stars
     .map(star => star.toString())
@@ -55,7 +57,7 @@ export default function DetailedProjectCard({
 
     setIsLoading(true)
 
-    const { status, message } = await starProject(project._id)
+    const { status, message } = await starProject(project._id, pathname)
 
     if (status !== 200) {
       toast.error(message)
@@ -67,7 +69,7 @@ export default function DetailedProjectCard({
   const onViewProject = async () => {
     setIsLoading(true)
 
-    const { status, message } = await viewProject(project._id)
+    const { status, message } = await viewProject(project._id, pathname)
 
     if (status === 200) {
       window.open(project.demoUrl, '_blank')
