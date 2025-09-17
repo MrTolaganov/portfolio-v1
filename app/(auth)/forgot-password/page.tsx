@@ -8,7 +8,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { getUserByEmail, updatePassword } from '@/actions/auth.action'
 import { sendOtp } from '@/actions/mail.action'
 import { toast } from 'sonner'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -77,9 +84,9 @@ export default function ForgotPassPage() {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={'mb-2'}>Email</FormLabel>
+                  <FormLabel>Email address</FormLabel>
                   <FormControl>
-                    <Input {...field} disabled={isLoading} />
+                    <Input {...field} disabled={isLoading} placeholder='Enter your email address' />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,23 +122,26 @@ export default function ForgotPassPage() {
               name='newPassword'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={'mb-2'}>New password</FormLabel>
+                  <FormLabel>New password</FormLabel>
                   <div className={'flex items-center'}>
                     <FormControl>
                       <Input
                         type={isVisiblePassword ? 'text' : 'password'}
                         {...field}
                         disabled={isLoading}
+                        className='rounded-r-none'
                       />
                     </FormControl>
 
                     <Button
                       type={'button'}
                       size={'icon'}
-                      variant={'outline'}
-                      className={'size-12 bg-secondary'}
+                      variant={'secondary'}
+                      className={
+                        'bg-secondary size-11 text-foreground border border-input rounded-l-none dark:bg-input/30'
+                      }
+                      aria-label={'Toggle password'}
                       onClick={() => setIsVisiblePassword(prev => !prev)}
-                      aria-label='Show or hide password'
                     >
                       {isVisiblePassword ? <EyeOff /> : <Eye />}
                     </Button>
@@ -146,21 +156,23 @@ export default function ForgotPassPage() {
               name='confirmPassword'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={'mb-2'}>Confirm password</FormLabel>
+                  <FormLabel>Confirm password</FormLabel>
                   <div className={'flex items-center'}>
                     <FormControl>
                       <Input
                         type={isVisiblePassword ? 'text' : 'password'}
                         {...field}
                         disabled={isLoading}
+                        className='rounded-r-none'
                       />
                     </FormControl>
-
                     <Button
                       type={'button'}
                       size={'icon'}
-                      variant={'outline'}
-                      className={'size-12 bg-secondary'}
+                      variant={'secondary'}
+                      className={
+                        'bg-secondary size-11 text-foreground border border-input rounded-l-none dark:bg-input/30'
+                      }
                       aria-label={'Toggle password'}
                       onClick={() => setIsVisiblePassword(prev => !prev)}
                     >
@@ -186,9 +198,9 @@ export default function ForgotPassPage() {
         </Form>
       )}
 
-      <div className={'text-sm space-x-2'}>
-        <span className={'text-muted-foreground'}>Don&apos;t have an account?</span>
-        <Link href={'/sign-up'} className={'underline'}>
+      <div className={'space-x-2'}>
+        <span>Don&apos;t have an account?</span>
+        <Link href={'/sign-up'} className={'underline text-primary'}>
           Sign up
         </Link>
       </div>

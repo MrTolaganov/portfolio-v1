@@ -4,23 +4,17 @@ import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/c
 import { IProject } from '@/types'
 import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
-import { format } from 'date-fns'
-import { Edit2, Eye, Github, Star, Trash2 } from 'lucide-react'
+import { Edit2, Eye, Github, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { starProject, viewProject } from '@/actions/project.action'
-import { useState } from 'react'
-import { toast } from 'sonner'
 import { useSession } from 'next-auth/react'
-import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { useOpenEditProjectForm } from '@/hooks/use-edit-project'
 import { useOpenDeleteProjectModal } from '@/hooks/use-delete-project'
-import { usePathname } from 'next/navigation'
 
 interface DetailedProjectCardProps {
   project: IProject
-  setEditedProject: (editedProject: IProject) => void
-  setDeletedProject: (deletedProject: IProject) => void
+  setEditedProject?: (editedProject: IProject) => void
+  setDeletedProject?: (deletedProject: IProject) => void
 }
 
 export default function DetailedProjectCard({
@@ -28,76 +22,35 @@ export default function DetailedProjectCard({
   setEditedProject,
   setDeletedProject,
 }: DetailedProjectCardProps) {
-  const [isLoading, setIsLoading] = useState(false)
   const { data: session } = useSession()
   const { setOpen } = useOpenEditProjectForm()
   const { setIsOpen } = useOpenDeleteProjectModal()
-  const pathname = usePathname()
-
-  const starred = project.stars
-    .map(star => star.toString())
-    .includes(session?.currentUser?._id ?? '')
-
-  const viewed = project.views
-    .map(view => view.toString())
-    .includes(session?.currentUser?._id ?? '')
 
   const onEditProject = () => {
+    if (!setEditedProject) return
     setOpen(true)
     setEditedProject(project)
   }
 
   const onDeleteProject = () => {
+    if (!setDeletedProject) return
     setIsOpen(true)
     setDeletedProject(project)
   }
 
-  const onStarProject = async () => {
-    if (isLoading) return
-
-    setIsLoading(true)
-
-    const { status, message } = await starProject(project._id, pathname)
-
-    if (status !== 200) {
-      toast.error(message)
-    }
-
-    setIsLoading(false)
-  }
-
-  const onViewProject = async () => {
-    setIsLoading(true)
-
-    const { status, message } = await viewProject(project._id, pathname)
-
-    if (status === 200) {
-      window.open(project.demoUrl, '_blank')
-    } else {
-      toast.error(message)
-    }
-
-    setIsLoading(false)
-  }
-
   return (
-    <Card className={'shadow-lg'}>
+    <Card className={'shadow-lg bg-secondary'}>
       <CardContent>
-        <div className={'h-48 w-full relative'}>
-          {session?.currentUser?.isAdmin && (
+        <div className={'h-44 w-full relative'}>
+          {session?.currentUser?.isAdmin && (setEditedProject || setDeletedProject) && (
             <span className={'absolute top-0 right-0 z-30 flex items-center'}>
-              <Button
-                size={'icon'}
-                variant={'secondary'}
-                onClick={onEditProject}
-                aria-label={'Edit'}
-              >
-                <Edit2 />
+              <Button size={'icon'} variant={'ghost'} onClick={onEditProject} aria-label={'Edit'}>
+                <Edit2 className='text-primary' />
               </Button>
 
               <Button
                 size={'icon'}
-                variant={'secondary'}
+                variant={'ghost'}
                 onClick={onDeleteProject}
                 aria-label={'Delete'}
               >
@@ -105,55 +58,40 @@ export default function DetailedProjectCard({
               </Button>
             </span>
           )}
-          <Image src={project.imageUrl} alt={project.name} fill className={'object-cover'} />
+          <Image
+            src={project.imageUrl}
+            alt={project.name}
+            fill
+            className={'object-cover rounded-t-2xl'}
+          />
         </div>
 
-        <div className={'p-1 flex flex-col justify-between sm:min-h-[188px]'}>
-          <div className={'flex justify-between items-center m-1'}>
-            <CardTitle className={'text-lg font-bold'}>{project.name}</CardTitle>
-            <p className={'text-xs text-muted-foreground'}>
-              {format(project.createdAt, 'dd/MM/yyyy')}
-            </p>
-          </div>
+        <div className='p-2 flex flex-col h-40'>
+          <CardTitle className={'text-lg font-bold m-1'}>{project.name}</CardTitle>
 
-          <CardDescription>
+          <CardDescription className='flex-1'>
             {project.techs.split(', ').map(tech => (
-              <Badge key={tech} className={'bg-secondary text-primary m-1'}>
+              <Badge
+                key={tech}
+                className={'bg-primary-foreground  font-semibold text-foreground m-1 rounded-full shadow-md'}
+              >
                 {tech}
               </Badge>
             ))}
           </CardDescription>
 
-          <div className={'grid grid-cols-2 mt-2 text-sm'}>
-            <div className={'flex items-center gap-x-2'}>
-              <Star
-                size={20}
-                className={cn('cursor-pointer text-primary', starred && 'fill-primary')}
-                onClick={onStarProject}
-              />
-              <span className={cn(starred ? 'text-primary' : 'text-muted-foreground')}>
-                {project.stars.length} {project.stars.length > 1 ? 'stars' : 'star'}
-              </span>
-            </div>
-
-            <div className={'flex items-center gap-x-2'}>
-              <Eye className={cn(viewed ? 'text-primary' : 'text-muted-foreground')} />
-              <span className={cn(viewed ? 'text-primary' : 'text-muted-foreground')}>
-                {project.views.length} {project.views.length > 1 ? 'views' : 'view'}
-              </span>
-            </div>
-          </div>
-
-          <div className={'grid grid-cols-2 gap-2 mt-3 p-1'}>
-            <Button size={'sm'} onClick={onViewProject} disabled={isLoading} aria-label={'View'}>
-              <Eye /> View
+          <div className={'grid grid-cols-2 gap-3 mt-2 p-1'}>
+            <Button size={'sm'} aria-label={'View'} asChild className='text-sm'>
+              <Link href={project.demoUrl} target='_blank'>
+                <Eye />
+                Visit now
+              </Link>
             </Button>
             <Button
               size={'sm'}
-              variant={'secondary'}
+              variant={'outline'}
+              className='bg-secondary text-sm text-foreground hover:text-foreground'
               asChild
-              disabled={isLoading}
-              className={cn(isLoading && 'text-muted-foreground')}
               aria-label={'Source code'}
             >
               <Link href={project.githubUrl} target={'_blank'}>

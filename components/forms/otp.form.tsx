@@ -90,7 +90,7 @@ export default function OtpForm({
     <Form {...otpForm}>
       <form onSubmit={otpForm.handleSubmit(onVerifyOtp)} className='space-y-3'>
         <FormItem className={'space-y-0'}>
-          <FormLabel className={'mb-2'}>Email address</FormLabel>
+          <FormLabel>Email address</FormLabel>
           <FormControl>
             <Input type='email' value={email} disabled />
           </FormControl>
@@ -102,7 +102,7 @@ export default function OtpForm({
           name='otp'
           render={({ field }) => (
             <FormItem className={'space-y-0'}>
-              <FormLabel className={'mb-2'}>Verification code</FormLabel>
+              <FormLabel>Verification code</FormLabel>
               <FormControl>
                 <InputOTP
                   maxLength={6}
@@ -112,12 +112,12 @@ export default function OtpForm({
                   disabled={isLoading}
                 >
                   <InputOTPGroup className='w-full space-x-2'>
-                    <InputOTPSlot index={0} className='w-full h-12 bg-secondary text-lg' />
+                    <InputOTPSlot index={0} className='w-full h-12 bg-secondary text-lg rounded-l-full' />
                     <InputOTPSlot index={1} className='w-full h-12 bg-secondary text-lg' />
                     <InputOTPSlot index={2} className='w-full h-12 bg-secondary text-lg' />
                     <InputOTPSlot index={3} className='w-full h-12 bg-secondary text-lg' />
                     <InputOTPSlot index={4} className='w-full h-12 bg-secondary text-lg' />
-                    <InputOTPSlot index={5} className='w-full h-12 bg-secondary text-lg' />
+                    <InputOTPSlot index={5} className='w-full h-12 bg-secondary text-lg rounded-r-full' />
                   </InputOTPGroup>
                 </InputOTP>
               </FormControl>
@@ -136,6 +136,7 @@ export default function OtpForm({
             variant={'secondary'}
             disabled={isLoading}
             aria-label={'Resend'}
+            className='text-white'
             onClick={() => onResend(email)}
           >
             Resend

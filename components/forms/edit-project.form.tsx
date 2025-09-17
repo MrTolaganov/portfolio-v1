@@ -93,7 +93,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Edi
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={'mb-2'}>Name</FormLabel>
+                    <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -107,7 +107,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Edi
                 name='techs'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={'mb-2'}>Technologies</FormLabel>
+                    <FormLabel>Technologies</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -121,7 +121,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Edi
                 name='demoUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={'mb-2'}>Demo URL</FormLabel>
+                    <FormLabel>Demo URL</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>
@@ -135,7 +135,7 @@ export default function EditProjectForm({ editedProject, setEditedProject }: Edi
                 name='githubUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={'mb-2'}>Github URL</FormLabel>
+                    <FormLabel>Github URL</FormLabel>
                     <FormControl>
                       <Input {...field} disabled={isLoading} />
                     </FormControl>

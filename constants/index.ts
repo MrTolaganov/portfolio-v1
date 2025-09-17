@@ -13,11 +13,11 @@ export const techs = [
   { label: 'ReactJS', image: '/react.png', category: 'frontend' },
   { label: 'TypeScript', image: '/ts.png', category: 'frontend' },
   { label: 'TailwindCSS', image: '/tailwind.png', category: 'frontend' },
+  { label: 'NextJS', image: '/next.png', category: 'fullstack' },
   { label: 'NodeJS', image: '/node.png', category: 'backend' },
   { label: 'ExpressJS', image: '/express.png', category: 'backend' },
   { label: 'MongoDB', image: '/mongo.png', category: 'backend' },
-  { label: 'PostgresSQL', image: '/postgres.png', category: 'backend' },
+  { label: 'PostgresSQL', image: '/postgress.svg', category: 'backend' },
   { label: 'NestJS', image: '/nest.png', category: 'backend' },
-  { label: 'NextJS', image: '/next.png', category: 'fullstack' },
   { label: 'Git', image: '/git.png', category: 'vsc' },
 ]

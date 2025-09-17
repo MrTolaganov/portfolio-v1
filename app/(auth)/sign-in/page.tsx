@@ -58,9 +58,14 @@ export default function SignInPage() {
           name='email'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className={'mb-2'}>Email address</FormLabel>
+              <FormLabel>Email address</FormLabel>
               <FormControl>
-                <Input type={'email'} {...field} disabled={isLoading} />
+                <Input
+                  type={'email'}
+                  {...field}
+                  disabled={isLoading}
+                  placeholder='Enter your email address'
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -72,20 +77,24 @@ export default function SignInPage() {
           name='password'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className={'mb-2'}>Password</FormLabel>
+              <FormLabel>Password</FormLabel>
               <div className={'flex items-center'}>
                 <FormControl>
                   <Input
                     type={isVisiblePassword ? 'text' : 'password'}
                     {...field}
                     disabled={isLoading}
+                    className='rounded-r-none'
+                    placeholder='Enter your password'
                   />
                 </FormControl>
                 <Button
                   type={'button'}
                   size={'icon'}
-                  variant={'outline'}
-                  className={'size-12 bg-secondary'}
+                  variant={'secondary'}
+                  className={
+                    'bg-secondary size-11 text-foreground border border-input rounded-l-none dark:bg-input/30'
+                  }
                   aria-label={'Toggle password'}
                   onClick={() => setIsVisiblePassword(prev => !prev)}
                 >
@@ -108,13 +117,13 @@ export default function SignInPage() {
           )}
         </Button>
 
-        <div className={'text-sm space-x-2'}>
-          <span className={'text-muted-foreground'}>Don&apos;t have an account?</span>
-          <Link href={'/sign-up'} className={'underline'}>
+        <div className={'space-x-2'}>
+          <span>Don&apos;t have an account?</span>
+          <Link href={'/sign-up'} className={'underline text-primary'}>
             Sign up
           </Link>
           <div>
-            <Link href={'/forgot-password'} className={'underline'}>
+            <Link href={'/forgot-password'} className={'underline text-primary'}>
               Forgot password?
             </Link>
           </div>

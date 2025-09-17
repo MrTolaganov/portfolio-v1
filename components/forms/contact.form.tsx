@@ -18,21 +18,16 @@ import { Button } from '@/components/ui/button'
 import { Loader, Send } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
-import { Session } from 'next-auth'
 
-interface ContactFormProps {
-  session: Session | null
-}
-
-export default function ContactForm({ session }: ContactFormProps) {
+export default function ContactForm() {
   const [isLoading, setIsLoading] = useState(false)
 
   const contactForm = useForm<z.infer<typeof contactFormSchema>>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: { message: '' },
+    defaultValues: { name: '', email: '', message: '' },
   })
 
-  const onSubmit = ({ message }: z.infer<typeof contactFormSchema>) => {
+  const onSubmit = ({ name, email, message }: z.infer<typeof contactFormSchema>) => {
     setIsLoading(true)
 
     const telegramBotId = process.env.NEXT_PUBLIC_TETELGRAM_BOT_API!
@@ -43,8 +38,8 @@ export default function ContactForm({ session }: ContactFormProps) {
       headers: { 'Content-Type': 'application/json', 'cache-control': 'no-cache' },
       body: JSON.stringify({
         chat_id: telegramChatId,
-        text: `Name: ${session?.currentUser?.fullName}
-Email: ${session?.currentUser?.email}
+        text: `Name: ${name}
+Email: ${email}
 Message: ${message}`,
       }),
     })
@@ -61,28 +56,42 @@ Message: ${message}`,
   return (
     <Form {...contactForm}>
       <form onSubmit={contactForm.handleSubmit(onSubmit)} className={'space-y-3'}>
-        <FormItem>
-          <FormLabel className={'mb-2'}>Full name</FormLabel>
-          <FormControl>
-            <Input disabled value={session?.currentUser?.fullName ?? ''} />
-          </FormControl>
-        </FormItem>
+        <FormField
+          control={contactForm.control}
+          name='name'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input {...field} disabled={isLoading} placeholder='Enter your name' />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-        <FormItem>
-          <FormLabel className={'mb-2'}>Email address</FormLabel>
-          <FormControl>
-            <Input disabled value={session?.currentUser?.email ?? ''} />
-          </FormControl>
-        </FormItem>
+        <FormField
+          control={contactForm.control}
+          name='email'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email address</FormLabel>
+              <FormControl>
+                <Input {...field} disabled={isLoading} placeholder='Enter your email address' />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={contactForm.control}
           name='message'
           render={({ field }) => (
             <FormItem>
-              <FormLabel className={'mb-2'}>Message</FormLabel>
+              <FormLabel>Message</FormLabel>
               <FormControl>
-                <Textarea {...field} disabled={isLoading} />
+                <Textarea {...field} disabled={isLoading} placeholder='Type a message...' />
               </FormControl>
               <FormMessage />
             </FormItem>

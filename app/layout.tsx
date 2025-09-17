@@ -43,7 +43,7 @@ export default function RootLayout({ children }: Readonly<ChildProps>) {
           disableTransitionOnChange
         >
           <NextAuthSessionProvider>
-            <TopLoader/>
+            <TopLoader />
             {children}
           </NextAuthSessionProvider>
           <Toaster position={'bottom-center'} />

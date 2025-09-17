@@ -4,7 +4,14 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { signUpSchema } from '@/lib/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -52,9 +59,14 @@ export default function SignUpPage() {
               name='fullName'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={'mb-2'}>Full name</FormLabel>
+                  <FormLabel>Full name</FormLabel>
                   <FormControl>
-                    <Input type={'text'} {...field} disabled={isLoading} />
+                    <Input
+                      type={'text'}
+                      {...field}
+                      disabled={isLoading}
+                      placeholder='Enter your full name'
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -66,9 +78,14 @@ export default function SignUpPage() {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={'mb-2'}>Email address</FormLabel>
+                  <FormLabel>Email address</FormLabel>
                   <FormControl>
-                    <Input type={'email'} {...field} disabled={isLoading} />
+                    <Input
+                      type={'email'}
+                      {...field}
+                      disabled={isLoading}
+                      placeholder='Enter your email address'
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -80,21 +97,25 @@ export default function SignUpPage() {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={'mb-2'}>Password</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <div className={'flex items-center'}>
                     <FormControl>
                       <Input
                         type={isVisiblePassword ? 'text' : 'password'}
                         {...field}
+                        placeholder='Enter your password'
                         disabled={isLoading}
+                        className='rounded-r-none'
                       />
                     </FormControl>
                     <Button
                       type={'button'}
                       size={'icon'}
-                      variant={'outline'}
-                      className={'size-12'}
-                      aria-label={'Show or hide password'}
+                      variant={'secondary'}
+                      className={
+                        'bg-secondary size-11 text-foreground border border-input rounded-l-none dark:bg-input/30'
+                      }
+                      aria-label={'Toggle password'}
                       onClick={() => setIsVisiblePassword(prev => !prev)}
                     >
                       {isVisiblePassword ? <EyeOff /> : <Eye />}
@@ -125,10 +146,10 @@ export default function SignUpPage() {
           setIsVerifying={setIsVerifying}
         />
       )}
-      
-      <div className={'text-sm space-x-2'}>
-        <span className={'text-muted-foreground'}>Already have an account?</span>
-        <Link href={'/sign-in'} className={'underline'}>
+
+      <div className={'space-x-2'}>
+        <span>Already have an account?</span>
+        <Link href={'/sign-in'} className={'underline text-primary'}>
           Sign in
         </Link>
       </div>

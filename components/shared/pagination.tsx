@@ -32,13 +32,20 @@ export default function Pagination({ page, isNext }: PaginationProps) {
         disabled={page === 1}
         onClick={() => onNavigate('prev')}
         aria-label={'Previous'}
+        className='text-sm'
       >
-        Previous
+        Prev
       </Button>
 
       <span>{page}</span>
 
-      <Button size={'sm'} disabled={!isNext} onClick={() => onNavigate('next')} aria-label={'Next'}>
+      <Button
+        size={'sm'}
+        disabled={!isNext}
+        onClick={() => onNavigate('next')}
+        aria-label={'Next'}
+        className='text-sm'
+      >
         Next
       </Button>
     </div>

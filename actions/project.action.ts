@@ -107,7 +107,7 @@ export async function deleteProject(projectId: string): Promise<IResponse> {
   }
 }
 
-export async function starProject(projectId: string, path:string): Promise<IResponse> {
+export async function starProject(projectId: string, path: string): Promise<IResponse> {
   try {
     await connectDatabase()
 
@@ -140,7 +140,7 @@ export async function starProject(projectId: string, path:string): Promise<IResp
   }
 }
 
-export async function viewProject(projectId: string, path:string): Promise<IResponse> {
+export async function viewProject(projectId: string, path: string): Promise<IResponse> {
   try {
     await connectDatabase()
 

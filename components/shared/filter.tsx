@@ -2,19 +2,13 @@
 
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-react'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { ChangeEvent, useCallback } from 'react'
+import { ChangeEvent, useCallback, useRef } from 'react'
 import { addUrlQuery, removeUrlQuery } from '@/lib/utils'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { debounce } from 'lodash'
 
 export default function Filter() {
+  const inputRef = useRef<HTMLInputElement>(null)
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -31,44 +25,23 @@ export default function Filter() {
     router.push(newUrlQuery)
   }
 
-  const onSelectChangeUrl = (selectValue: string) => {
-    const newUrlQuery = addUrlQuery({
-      params: searchParams.toString(),
-      key: 'filter',
-      value: selectValue,
-    })
-    router.push(newUrlQuery)
-  }
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const onDebounceChangeUrl = useCallback(debounce(onInputChangeUrl, 300), [])
 
   return (
-    <div className='flex flex-col md:flex-row md:justify-end gap-2 max-md:w-full'>
+    <div className='flex flex-col md:flex-row md:justify-center gap-2 max-md:w-full'>
       <div className='flex flex-col md:flex-row gap-2 max-md:w-full'>
-        <div className={'flex items-center bg-secondary'}>
+        <div className={'flex items-center bg-secondary rounded-full'}>
           <Input
+            ref={inputRef}
             placeholder={'Search...'}
-            className={'no-focus border-none min-w-64 h-10'}
+            className={'no-focus border-none w-full md:min-w-96 h-10 rounded-r-none'}
             onChange={onDebounceChangeUrl}
           />
-          <Search className={'mx-4 cursor-pointer text-muted-foreground'} />
-        </div>
-        
-        <div>
-          <Select
-            defaultValue={'latest'}
-            onValueChange={selectValue => onSelectChangeUrl(selectValue)}
-          >
-            <SelectTrigger className={'bg-secondary'}>
-              <SelectValue placeholder={'Filter'} className={'text-muted-foreground'} />
-            </SelectTrigger>
-            <SelectContent className={'m-0'}>
-              <SelectItem value={'latest'}>Latest</SelectItem>
-              <SelectItem value={'most-starred'}>Most starred</SelectItem>
-              <SelectItem value={'most-viewed'}>Most viewed</SelectItem>
-            </SelectContent>
-          </Select>
+          <Search
+            onClick={() => inputRef.current?.focus()}
+            className={'mx-4 cursor-pointer text-muted-foreground'}
+          />
         </div>
       </div>
     </div>
