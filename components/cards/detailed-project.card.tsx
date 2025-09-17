@@ -73,7 +73,9 @@ export default function DetailedProjectCard({
             {project.techs.split(', ').map(tech => (
               <Badge
                 key={tech}
-                className={'bg-primary-foreground  font-semibold text-foreground m-1 rounded-full shadow-md'}
+                className={
+                  'bg-primary-foreground  font-semibold text-foreground m-1 rounded-full shadow-md'
+                }
               >
                 {tech}
               </Badge>
@@ -90,7 +92,7 @@ export default function DetailedProjectCard({
             <Button
               size={'sm'}
               variant={'outline'}
-              className='bg-secondary text-sm text-foreground hover:text-foreground'
+              className='bg-secondary text-sm text-foreground hover:text-foreground hover:bg-secondary'
               asChild
               aria-label={'Source code'}
             >

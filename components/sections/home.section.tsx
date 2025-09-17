@@ -6,8 +6,13 @@ import { Download, Github } from 'lucide-react'
 export default function HomeSection() {
   return (
     <section className='min-h-screen max-sm:mt-8 flex flex-col md:flex-row-reverse justify-center items-center md:gap-x-32 gap-y-8'>
-      <div className='relative size-72 md:size-96 bg-secondary rounded-full border-4 border-primary'>
-        <Image src={'/avatar.jpg'} alt='my-image' fill className='rounded-full' />
+      <div className='relative size-72 md:size-96'>
+        <Image
+          src={'/avatar.jpg'}
+          alt='my-image'
+          fill
+          className='rounded-full border-4 border-primary'
+        />
       </div>
 
       <div className='flex flex-col gap-y-2 md:gap-y-4 items-center md:items-start'>

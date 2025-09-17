@@ -7,8 +7,8 @@ export function ModeToggle() {
   const { theme, setTheme } = useTheme()
 
   return theme === 'light' ? (
-    <Moon className='cursor-pointer' onClick={() => setTheme('dark')} />
+    <Moon role='button' className='cursor-pointer' onClick={() => setTheme('dark')} />
   ) : (
-    <Sun className='cursor-pointer' onClick={() => setTheme('light')} />
+    <Sun role='button' className='cursor-pointer' onClick={() => setTheme('light')} />
   )
 }
