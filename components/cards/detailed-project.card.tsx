@@ -68,7 +68,7 @@ export default function DetailedProjectCard({
               <Badge
                 key={tech}
                 className={
-                  'bg-primary-foreground  font-semibold text-foreground m-1 rounded-full shadow-md'
+                  'bg-background  font-semibold text-foreground m-1 rounded-full shadow-md'
                 }
               >
                 {tech}
