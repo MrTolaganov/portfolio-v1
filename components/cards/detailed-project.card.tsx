@@ -86,7 +86,7 @@ export default function DetailedProjectCard({
             <Button
               size={'sm'}
               variant={'outline'}
-              className='bg-secondary text-sm hover:bg-secondary'
+              className='text-sm'
               asChild
               aria-label={'Source code'}
             >
