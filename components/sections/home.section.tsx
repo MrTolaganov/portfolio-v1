@@ -9,19 +9,10 @@ export default function HomeSection() {
       <Image
         src={'/avatar.jpg'}
         alt='my-image'
-        width={288}
-        height={288}
+        width={300}
+        height={300}
         priority
-        className='md:hidden rounded-full border-4 border-primary'
-      />
-
-      <Image
-        src={'/avatar.jpg'}
-        alt='my-image'
-        width={384}
-        height={384}
-        priority
-        className='max-md:hidden rounded-full border-4 border-primary'
+        className='rounded-full border-4 border-primary'
       />
 
       <div className='flex flex-col gap-y-2 md:gap-y-4 items-center md:items-start'>
@@ -52,7 +43,7 @@ export default function HomeSection() {
             asChild
             variant={'outline'}
             aria-label={'Github profile'}
-            className='border-primary border-2 text-foreground hover:text-foreground hover:bg-background'
+            className='border-primary border-2 hover:bg-background'
           >
             <Link href={'https://github.com/MrTolaganov'} target={'_blank'}>
               <Github />
