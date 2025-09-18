@@ -86,7 +86,12 @@ export default function ForgotPassPage() {
                 <FormItem>
                   <FormLabel>Email address</FormLabel>
                   <FormControl>
-                    <Input {...field} disabled={isLoading} placeholder='Enter your email address' />
+                    <Input
+                      {...field}
+                      disabled={isLoading}
+                      placeholder='Enter your email address'
+                      autoComplete='email'
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -130,6 +135,7 @@ export default function ForgotPassPage() {
                         {...field}
                         disabled={isLoading}
                         className='rounded-r-none'
+                        autoComplete='current-password'
                       />
                     </FormControl>
 
@@ -164,6 +170,7 @@ export default function ForgotPassPage() {
                         {...field}
                         disabled={isLoading}
                         className='rounded-r-none'
+                        autoComplete='current-password'
                       />
                     </FormControl>
                     <Button

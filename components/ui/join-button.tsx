@@ -1,14 +1,22 @@
-import Link from 'next/link'
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { Button } from './button'
 import { LogIn } from 'lucide-react'
 
 export default function JoinButton() {
+  const router = useRouter()
+
   return (
-    <Link href={'/sign-in'}>
-      <Button type='button' className='max-md:hidden'>
+    <>
+      <Button type='button' className='max-md:hidden' onClick={() => router.push('/sign-in')}>
         Join now
       </Button>
-      <LogIn className='md:hidden' />
-    </Link>
+      <LogIn
+        role='button'
+        className='md:hidden cursor-pointer'
+        onClick={() => router.push('/sign-in')}
+      />
+    </>
   )
 }

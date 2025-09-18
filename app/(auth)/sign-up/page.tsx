@@ -66,6 +66,7 @@ export default function SignUpPage() {
                       {...field}
                       disabled={isLoading}
                       placeholder='Enter your full name'
+                      autoComplete='name'
                     />
                   </FormControl>
                   <FormMessage />
@@ -85,6 +86,7 @@ export default function SignUpPage() {
                       {...field}
                       disabled={isLoading}
                       placeholder='Enter your email address'
+                      autoComplete='email'
                     />
                   </FormControl>
                   <FormMessage />
@@ -106,6 +108,7 @@ export default function SignUpPage() {
                         placeholder='Enter your password'
                         disabled={isLoading}
                         className='rounded-r-none'
+                        autoComplete='current-password'
                       />
                     </FormControl>
                     <Button

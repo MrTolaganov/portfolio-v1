@@ -65,6 +65,7 @@ export default function SignInPage() {
                   {...field}
                   disabled={isLoading}
                   placeholder='Enter your email address'
+                  autoComplete='email'
                 />
               </FormControl>
               <FormMessage />
@@ -86,6 +87,7 @@ export default function SignInPage() {
                     disabled={isLoading}
                     className='rounded-r-none'
                     placeholder='Enter your password'
+                    autoComplete='current-password'
                   />
                 </FormControl>
                 <Button
