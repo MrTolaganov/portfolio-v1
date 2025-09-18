@@ -14,7 +14,7 @@ export default function MobileMenu() {
   return (
     <Sheet>
       <SheetTrigger asChild className='cursor-pointer md:hidden'>
-        <Menu />
+        <Menu role='button' />
       </SheetTrigger>
 
       <SheetContent side='top'>
