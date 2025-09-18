@@ -14,7 +14,6 @@ import { useState } from 'react'
 import { deleteProject } from '@/actions/project.action'
 import { toast } from 'sonner'
 import { IProject } from '@/types'
-import { useOpenDeleteProjectModal } from '@/hooks/use-delete-project'
 
 interface DeleteProjectFormProps {
   deletedProject: IProject
@@ -26,7 +25,6 @@ export default function DeleteProjectForm({
   setDeletedProject,
 }: DeleteProjectFormProps) {
   const [isLoading, setIsLoading] = useState(false)
-  const { isOpen, setIsOpen } = useOpenDeleteProjectModal()
 
   const onDeleteProject = async () => {
     setIsLoading(true)
@@ -40,17 +38,11 @@ export default function DeleteProjectForm({
     }
 
     setIsLoading(false)
-    setIsOpen(false)
-    setDeletedProject(null)
-  }
-
-  const onCloseAlertDialog = () => {
-    setIsOpen(false)
     setDeletedProject(null)
   }
 
   return (
-    <AlertDialog open={isOpen} onOpenChange={onCloseAlertDialog}>
+    <AlertDialog open={!!deleteProject} onOpenChange={() => setDeletedProject(null)}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
@@ -65,7 +57,7 @@ export default function DeleteProjectForm({
         <AlertDialogFooter>
           <AlertDialogCancel
             disabled={isLoading}
-            onClick={onCloseAlertDialog}
+            onClick={() => setDeletedProject(null)}
             aria-label={'Cancel'}
           >
             Cancel

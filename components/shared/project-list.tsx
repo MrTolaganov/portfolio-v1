@@ -2,8 +2,8 @@
 import { IProject } from '@/types'
 import DetailedProjectCard from '@/components/cards/detailed-project.card'
 import { useState } from 'react'
-import EditProjectForm from '@/components/forms/edit-project.form'
 import DeleteProjectForm from '@/components/forms/delete-project.form'
+import EditProjectForm from '@/components/forms/edit-project.form'
 
 interface ProjectListProps {
   projects: IProject[]

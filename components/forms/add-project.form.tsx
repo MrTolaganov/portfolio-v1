@@ -22,21 +22,14 @@ import { X } from 'lucide-react'
 import { toast } from 'sonner'
 import { deleteFile } from '@/actions/file.action'
 import { addProject } from '@/actions/project.action'
-import { useOpenAddProjectForm } from '@/hooks/use-add-project'
 
 export default function AddProjectForm() {
   const [isLoading, setIsLoading] = useState(false)
-  const { isOpen, setOpen } = useOpenAddProjectForm()
+  const [isOpen, setOpen] = useState(false)
 
   const addProjectForm = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
-    defaultValues: {
-      name: '',
-      imageUrl: '',
-      techs: '',
-      demoUrl: '',
-      githubUrl: '',
-    },
+    defaultValues: { name: '', imageUrl: '', techs: '', demoUrl: '', githubUrl: '' },
   })
 
   const onRemoveImage = () => {
@@ -52,10 +45,9 @@ export default function AddProjectForm() {
   }
 
   const onSubmit = async (values: z.infer<typeof projectSchema>) => {
-    if (!values.imageUrl || !values.imageKey) return
-
     setIsLoading(true)
 
+    if (!values.imageUrl || !values.imageKey) return
     const { status, message } = await addProject(values)
 
     if (status === 200) {

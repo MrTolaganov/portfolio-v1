@@ -8,8 +8,6 @@ import { Edit2, Eye, Github, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import { useOpenEditProjectForm } from '@/hooks/use-edit-project'
-import { useOpenDeleteProjectModal } from '@/hooks/use-delete-project'
 
 interface DetailedProjectCardProps {
   project: IProject
@@ -23,18 +21,14 @@ export default function DetailedProjectCard({
   setDeletedProject,
 }: DetailedProjectCardProps) {
   const { data: session } = useSession()
-  const { setOpen } = useOpenEditProjectForm()
-  const { setIsOpen } = useOpenDeleteProjectModal()
 
   const onEditProject = () => {
     if (!setEditedProject) return
-    setOpen(true)
     setEditedProject(project)
   }
 
   const onDeleteProject = () => {
     if (!setDeletedProject) return
-    setIsOpen(true)
     setDeletedProject(project)
   }
 

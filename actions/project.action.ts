@@ -4,8 +4,7 @@ import { IProject, IResponse, SearchParamsValues } from '@/types'
 import connectDatabase from '@/lib/mongoose'
 import ProjectModel from '@/models/project.model'
 import { revalidatePath } from 'next/cache'
-import { getServerSession } from 'next-auth'
-import { nextAuthOptions } from '@/lib/auth-options'
+import { cache } from 'react'
 
 export async function addProject(project: Partial<IProject>): Promise<IResponse> {
   try {
@@ -66,7 +65,7 @@ export async function getProjects({
   }
 }
 
-export async function getFeaturedProjects(): Promise<IProject[]> {
+export const getFeaturedProjects = cache(async (): Promise<IProject[]> => {
   try {
     await connectDatabase()
 
@@ -76,7 +75,7 @@ export async function getFeaturedProjects(): Promise<IProject[]> {
   } catch {
     return []
   }
-}
+})
 
 export async function editProject(
   projectId: string,
@@ -102,70 +101,6 @@ export async function deleteProject(projectId: string): Promise<IResponse> {
     revalidatePath('/projects', 'page')
 
     return { status: 200, message: 'Project deleted successfully.' }
-  } catch {
-    return { status: 500, message: 'Something went wrong' }
-  }
-}
-
-export async function starProject(projectId: string, path: string): Promise<IResponse> {
-  try {
-    await connectDatabase()
-
-    const session = await getServerSession(nextAuthOptions)
-    const project = await ProjectModel.findById(projectId)
-    let starred: boolean = false
-
-    for (const star of project.stars) {
-      if (star.toString() === session?.currentUser?._id) {
-        starred = true
-        break
-      }
-    }
-
-    if (!starred) {
-      await ProjectModel.findByIdAndUpdate(projectId, {
-        $push: { stars: session?.currentUser?._id },
-      })
-    } else {
-      await ProjectModel.findByIdAndUpdate(projectId, {
-        $pull: { stars: session?.currentUser?._id },
-      })
-    }
-
-    revalidatePath(path, 'page')
-
-    return { status: 200, message: 'Project viewed successfully.' }
-  } catch {
-    return { status: 500, message: 'Something went wrong' }
-  }
-}
-
-export async function viewProject(projectId: string, path: string): Promise<IResponse> {
-  try {
-    await connectDatabase()
-
-    const session = await getServerSession(nextAuthOptions)
-
-    const project = await ProjectModel.findById(projectId)
-
-    let viewed: boolean = false
-
-    for (const view of project.views) {
-      if (view.toString() === session?.currentUser?._id) {
-        viewed = true
-        break
-      }
-    }
-
-    if (!viewed) {
-      await ProjectModel.findByIdAndUpdate(projectId, {
-        $push: { views: session?.currentUser?._id },
-      })
-    }
-
-    revalidatePath(path, 'page')
-
-    return { status: 200, message: 'Project viewed successfully.' }
   } catch {
     return { status: 500, message: 'Something went wrong' }
   }
