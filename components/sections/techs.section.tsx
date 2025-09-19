@@ -15,7 +15,7 @@ export default function TechsSection() {
               alt={tech.label}
               width={100}
               height={100}
-              className='rounded-2xl'
+              className='rounded-2xl object-contain aspect-square'
             />
           ))}
         </div>
