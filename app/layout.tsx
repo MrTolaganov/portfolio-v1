@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/sonner'
 import NextAuthSessionProvider from '@/components/providers/session.provider'
 import TopLoader from '@/components/shared/top-loader'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const montserrat = Montserrat({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: Readonly<ChildProps>) {
           <Toaster position={'bottom-center'} />
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
