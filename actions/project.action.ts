@@ -69,7 +69,7 @@ export const getFeaturedProjects = cache(async (): Promise<IProject[]> => {
   try {
     await connectDatabase()
 
-    const projects = await ProjectModel.find().sort({ createdAt: -1 }).limit(8)
+    const projects = await ProjectModel.find().sort({ createdAt: -1 }).limit(6)
 
     return JSON.parse(JSON.stringify(projects))
   } catch {

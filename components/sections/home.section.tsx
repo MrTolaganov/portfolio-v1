@@ -17,7 +17,7 @@ export default function HomeSection() {
 
       <div className='flex flex-col gap-y-2 md:gap-y-4 items-center md:items-start'>
         <div className='flex flex-col text-4xl md:text-5xl font-bold '>
-          <p className='max-md:text-center mb-1'>Hello👋, I&apos;m</p>
+          <p className='text-muted-foreground max-md:text-center mb-1'>Hello👋, I&apos;m</p>
           <p className='mt-2 text-5xl md:text-6xl font-bold text-primary max-md:text-center'>
             Otabek
           </p>

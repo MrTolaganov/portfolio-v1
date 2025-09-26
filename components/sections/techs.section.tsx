@@ -11,6 +11,7 @@ export default function TechsSection() {
           {techs.map(tech => (
             <Image
               key={tech.label}
+              title={tech.label}
               src={tech.image}
               alt={tech.label}
               width={100}

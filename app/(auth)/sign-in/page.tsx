@@ -120,12 +120,12 @@ export default function SignInPage() {
         </Button>
 
         <div className={'space-x-2'}>
-          <span>Don&apos;t have an account?</span>
-          <Link href={'/sign-up'} className={'underline text-primary'}>
+          <span className='text-muted-foreground'>Don&apos;t have an account?</span>
+          <Link href={'/sign-up'} className={'hover:underline text-primary'}>
             Sign up
           </Link>
           <div>
-            <Link href={'/forgot-password'} className={'underline text-primary'}>
+            <Link href={'/forgot-password'} className={'hover:underline text-primary'}>
               Forgot password?
             </Link>
           </div>

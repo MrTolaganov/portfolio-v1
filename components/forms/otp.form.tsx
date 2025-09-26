@@ -112,12 +112,18 @@ export default function OtpForm({
                   disabled={isLoading}
                 >
                   <InputOTPGroup className='w-full space-x-2'>
-                    <InputOTPSlot index={0} className='w-full h-12 bg-secondary text-lg rounded-l-full' />
+                    <InputOTPSlot
+                      index={0}
+                      className='w-full h-12 bg-secondary text-lg rounded-l-full'
+                    />
                     <InputOTPSlot index={1} className='w-full h-12 bg-secondary text-lg' />
                     <InputOTPSlot index={2} className='w-full h-12 bg-secondary text-lg' />
                     <InputOTPSlot index={3} className='w-full h-12 bg-secondary text-lg' />
                     <InputOTPSlot index={4} className='w-full h-12 bg-secondary text-lg' />
-                    <InputOTPSlot index={5} className='w-full h-12 bg-secondary text-lg rounded-r-full' />
+                    <InputOTPSlot
+                      index={5}
+                      className='w-full h-12 bg-secondary text-lg rounded-r-full'
+                    />
                   </InputOTPGroup>
                 </InputOTP>
               </FormControl>
@@ -136,7 +142,6 @@ export default function OtpForm({
             variant={'secondary'}
             disabled={isLoading}
             aria-label={'Resend'}
-            className='text-white'
             onClick={() => onResend(email)}
           >
             Resend

@@ -24,7 +24,7 @@ export default function Header() {
               key={navItem.name}
               id={'navItem'}
               href={navItem.path}
-              className={'text-xl font-semibold hover:text-primary'}
+              className={'text-xl text-muted-foreground font-semibold hover:text-primary'}
             >
               {navItem.name}
             </Link>

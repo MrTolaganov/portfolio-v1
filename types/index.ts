@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { MouseEvent, ReactNode } from 'react'
 import { Schema } from 'mongoose'
 
 export interface ChildProps {
@@ -6,6 +6,8 @@ export interface ChildProps {
 }
 
 export type SearchParams = { [key: string]: string | string[] | undefined }
+
+export type Event = MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
 
 export interface IUser {
   _id: string

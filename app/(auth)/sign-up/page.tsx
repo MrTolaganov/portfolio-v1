@@ -151,8 +151,8 @@ export default function SignUpPage() {
       )}
 
       <div className={'space-x-2'}>
-        <span>Already have an account?</span>
-        <Link href={'/sign-in'} className={'underline text-primary'}>
+        <span className='text-muted-foreground'>Already have an account?</span>
+        <Link href={'/sign-in'} className={'text-primary hover:underline'}>
           Sign in
         </Link>
       </div>

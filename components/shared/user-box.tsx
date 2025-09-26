@@ -21,12 +21,12 @@ export default function UserBox({ currentUser }: UserBoxProps) {
       <DropdownMenuTrigger asChild>
         <Avatar role='button'>
           <AvatarFallback aria-label='Avatar' className='cursor-pointer text-xl font-semibold '>
-            <UserRound className='fill-white text-white' />
+            <UserRound className='fill-background text-background' />
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent>
+      <DropdownMenuContent className='rounded-2xl'>
         <DropdownMenuItem className={'flex flex-col gap-y-1 items-start'}>
           <p className={'gradient-foreground text-lg'}>{currentUser?.fullName}</p>
           <p className={'text-muted-foreground text-base'}>{currentUser?.email}</p>

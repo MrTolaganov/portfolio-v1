@@ -11,7 +11,7 @@ export default async function ProjectsSection() {
       <div className='min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-16 lg:px-32'>
         <h2 className={'text-3xl mb-16 font-bold text-primary text-center'}>Projects</h2>
 
-        <div className={'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'}>
+        <div className={'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'}>
           {projects.length > 0 ? (
             projects.map(project => <DetailedProjectCard key={project._id} project={project} />)
           ) : (

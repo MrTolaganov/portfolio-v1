@@ -23,7 +23,7 @@ export default async function ProjectsPage(params: Params) {
   const { projects, isNext } = await getProjects({
     ...searchParams,
     page: +searchParams.page! || 1,
-    pageSize: 12,
+    pageSize: 9,
   })
 
   return (
