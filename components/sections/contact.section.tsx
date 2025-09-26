@@ -11,7 +11,7 @@ export default function ContactSection() {
             <span className={'text-primary text-center'}>Contact me</span>
           </div>
         </h2>
-        <div className={'grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-48 lg:gap-64'}>
+        <div className={'grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 lg:gap-40'}>
           <ContactForm />
           <Socials />
         </div>

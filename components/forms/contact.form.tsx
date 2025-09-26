@@ -55,7 +55,7 @@ Message: ${message}`,
 
   return (
     <Form {...contactForm}>
-      <form onSubmit={contactForm.handleSubmit(onSubmit)} className={'space-y-3'}>
+      <form onSubmit={contactForm.handleSubmit(onSubmit)} className={'space-y-3 md:min-w-[500px]'}>
         <FormField
           control={contactForm.control}
           name='name'
@@ -63,7 +63,11 @@ Message: ${message}`,
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} disabled={isLoading} placeholder='Enter your name' />
+                <Input
+                  {...field}
+                  disabled={isLoading}
+                  placeholder='Enter your name'
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -98,7 +102,7 @@ Message: ${message}`,
           )}
         />
 
-        <Button type={'submit'} disabled={isLoading} aria-label={'Send message'}>
+        <Button type={'submit'} disabled={isLoading} aria-label={'Send message'} className='w-full'>
           {isLoading ? (
             <>
               <Loader className={'animate-spin'} />
