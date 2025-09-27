@@ -12,11 +12,15 @@ export default function JoinButton() {
       <Button type='button' className='max-md:hidden' onClick={() => router.push('/sign-in')}>
         Join now
       </Button>
-      <LogIn
-        role='button'
-        className='md:hidden cursor-pointer'
+      <Button
+        size={'icon'}
+        variant={'ghost'}
+        className='md:hidden p-1'
+        asChild
         onClick={() => router.push('/sign-in')}
-      />
+      >
+        <LogIn />
+      </Button>
     </>
   )
 }

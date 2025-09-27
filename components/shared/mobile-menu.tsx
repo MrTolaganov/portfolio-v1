@@ -9,12 +9,21 @@ import {
 import { Menu } from 'lucide-react'
 import { navItems } from '@/constants'
 import Link from 'next/link'
+import { Button } from '../ui/button'
 
 export default function MobileMenu() {
   return (
     <Sheet>
-      <SheetTrigger asChild className='cursor-pointer md:hidden'>
-        <Menu role='button' />
+      <SheetTrigger asChild>
+        <Button
+          size={'icon'}
+          variant={'ghost'}
+          className='size-10 p-1 md:hidden'
+          aria-label='Menu'
+          asChild
+        >
+          <Menu />
+        </Button>
       </SheetTrigger>
 
       <SheetContent side='top'>
@@ -27,7 +36,9 @@ export default function MobileMenu() {
               <Link
                 id={'navItem'}
                 href={navItem.path}
-                className={'text-center text-xl py-4 hover:text-primary font-semibold'}
+                className={
+                  'text-center text-muted-foreground text-xl py-4 hover:text-primary font-semibold'
+                }
               >
                 {navItem.name}
               </Link>

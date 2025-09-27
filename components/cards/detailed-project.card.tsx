@@ -46,27 +46,11 @@ export default function DetailedProjectCard({
     <div
       role='button'
       onClick={onVisitProjectDemo}
-      className='cursor-pointer hover:border hover:border-primary rounded-2xl'
+      className='cursor-pointer hover:scale-105 rounded-2xl h-full'
     >
-      <Card className={'shadow-lg bg-secondary'}>
-        <CardContent>
+      <Card className={'shadow-xl h-full'}>
+        <CardContent className='flex flex-col'>
           <div className={'h-48 w-full relative'}>
-            {session?.currentUser?.isAdmin && (setEditedProject || setDeletedProject) && (
-              <span className={'absolute top-0 right-0 z-30 flex items-center'}>
-                <Button size={'icon'} variant={'ghost'} onClick={onEditProject} aria-label={'Edit'}>
-                  <Edit2 className='text-primary' />
-                </Button>
-
-                <Button
-                  size={'icon'}
-                  variant={'ghost'}
-                  onClick={onDeleteProject}
-                  aria-label={'Delete'}
-                >
-                  <Trash2 className={'text-red-500'} />
-                </Button>
-              </span>
-            )}
             <Image
               src={project.imageUrl}
               alt={project.name}
@@ -75,9 +59,44 @@ export default function DetailedProjectCard({
             />
           </div>
 
-          <div className='p-2 flex flex-col h-40'>
-            <CardTitle className={'text-lg font-bold m-1'}>{project.name}</CardTitle>
+          <div className='p-3 flex flex-col flex-1 gap-y-2'>
+            <div className='flex items-center justify-between'>
+              <CardTitle className={'text-xl font-bold'}>{project.name}</CardTitle>
+              <div className='flex items-center gap-x-2'>
+                <Button
+                  size={'icon'}
+                  variant={'outline'}
+                  className='bg-card size-7 hover:bg-card'
+                  aria-label={'Source code'}
+                  onClick={onVisitProjectGithub}
+                >
+                  <Github />
+                </Button>
+                {session?.currentUser?.isAdmin && (setEditedProject || setDeletedProject) && (
+                  <>
+                    <Button
+                      size={'icon'}
+                      variant={'outline'}
+                      className='bg-card size-7 hover:bg-card'
+                      onClick={onEditProject}
+                      aria-label={'Edit'}
+                    >
+                      <Edit2 />
+                    </Button>
 
+                    <Button
+                      size={'icon'}
+                      variant={'outline'}
+                      className='bg-card size-7 hover:bg-card'
+                      onClick={onDeleteProject}
+                      aria-label={'Delete'}
+                    >
+                      <Trash2 />
+                    </Button>
+                  </>
+                )}
+              </div>
+            </div>
             <CardDescription className='flex-1'>
               {project.techs.split(', ').map(tech => (
                 <Badge
@@ -90,26 +109,6 @@ export default function DetailedProjectCard({
                 </Badge>
               ))}
             </CardDescription>
-
-            {/* <div className={'grid grid-cols-2 gap-3 mt-2 p-1'}> */}
-            {/* <Button size={'sm'} aria-label={'View'} asChild className='text-sm'>
-              <Link href={project.demoUrl} target='_blank'>
-                <Eye />
-                Visit now
-              </Link>
-            </Button> */}
-            <Button
-              size={'sm'}
-              className='text-sm'
-              aria-label={'Source code'}
-              onClick={onVisitProjectGithub}
-            >
-              {/* <Link href={project.githubUrl} target={'_blank'}> */}
-              <Github />
-              Source code
-              {/* </Link> */}
-            </Button>
-            {/* </div> */}
           </div>
         </CardContent>
       </Card>

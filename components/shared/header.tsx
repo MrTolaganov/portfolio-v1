@@ -31,7 +31,7 @@ export default function Header() {
           ))}
         </div>
 
-        <div className={'flex items-center gap-x-6'}>
+        <div className={'flex items-center gap-x-3'}>
           <ModeToggle />
 
           {status === 'loading' && <Skeleton className='size-10 rounded-full' />}

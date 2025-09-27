@@ -6,6 +6,7 @@ import { ChangeEvent, useCallback, useRef } from 'react'
 import { addUrlQuery, removeUrlQuery } from '@/lib/utils'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { debounce } from 'lodash'
+import { Button } from '../ui/button'
 
 export default function Filter() {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -29,21 +30,22 @@ export default function Filter() {
   const onDebounceChangeUrl = useCallback(debounce(onInputChangeUrl, 300), [])
 
   return (
-    <div className='flex flex-col md:flex-row md:justify-center gap-2 max-md:w-full'>
-      <div className='flex flex-col md:flex-row gap-2 max-md:w-full'>
-        <div className={'flex items-center bg-secondary rounded-full'}>
-          <Input
-            ref={inputRef}
-            placeholder={'Search...'}
-            className={'no-focus border-none w-full md:min-w-96 h-10 rounded-r-none'}
-            onChange={onDebounceChangeUrl}
-          />
-          <Search
-            onClick={() => inputRef.current?.focus()}
-            className={'mx-4 cursor-pointer text-muted-foreground'}
-          />
-        </div>
-      </div>
+    <div className={'flex max-md:flex-1 items-center '}>
+      <Input
+        ref={inputRef}
+        placeholder={'Search...'}
+        className='h-10 md:min-w-96 rounded-r-none'
+        onChange={onDebounceChangeUrl}
+      />
+      <Button
+        size={'icon'}
+        variant={'outline'}
+        className='size-10 border border-input bg-input/30 rounded-l-none p-2 hover:bg-input/30'
+        onClick={() => inputRef.current?.focus()}
+        asChild
+      >
+        <Search />
+      </Button>
     </div>
   )
 }

@@ -21,6 +21,7 @@ import { sendOtp, verifyOtp } from '@/actions/mail.action'
 import { toast } from 'sonner'
 import { signIn as signInWithCredentials } from 'next-auth/react'
 import { signUp } from '@/actions/auth.action'
+import { cn } from '@/lib/utils'
 
 interface OtpFormProps {
   fullName?: string
@@ -112,18 +113,17 @@ export default function OtpForm({
                   disabled={isLoading}
                 >
                   <InputOTPGroup className='w-full space-x-2'>
-                    <InputOTPSlot
-                      index={0}
-                      className='w-full h-12 bg-secondary text-lg rounded-l-full'
-                    />
-                    <InputOTPSlot index={1} className='w-full h-12 bg-secondary text-lg' />
-                    <InputOTPSlot index={2} className='w-full h-12 bg-secondary text-lg' />
-                    <InputOTPSlot index={3} className='w-full h-12 bg-secondary text-lg' />
-                    <InputOTPSlot index={4} className='w-full h-12 bg-secondary text-lg' />
-                    <InputOTPSlot
-                      index={5}
-                      className='w-full h-12 bg-secondary text-lg rounded-r-full'
-                    />
+                    {Array.from({ length: 6 }).map((_, index) => (
+                      <InputOTPSlot
+                        key={index}
+                        index={index}
+                        className={cn(
+                          'w-full h-12 bg-secondary text-lg',
+                          index === 0 && 'rounded-l-full',
+                          index === 5 && 'rounded-r-full'
+                        )}
+                      />
+                    ))}
                   </InputOTPGroup>
                 </InputOTP>
               </FormControl>

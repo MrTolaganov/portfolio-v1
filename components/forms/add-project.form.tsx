@@ -18,7 +18,7 @@ import { UploadDropzone } from '@/lib/uploadthing'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { useState } from 'react'
-import { X } from 'lucide-react'
+import { Plus, X } from 'lucide-react'
 import { toast } from 'sonner'
 import { deleteFile } from '@/actions/file.action'
 import { addProject } from '@/actions/project.action'
@@ -68,8 +68,18 @@ export default function AddProjectForm() {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} aria-label='Add project'>
+      <Button className='max-md:hidden' onClick={() => setOpen(true)} aria-label='Add project'>
         Add project
+      </Button>
+
+      <Button
+        size={'icon'}
+        className='md:hidden font-extrabold size-10 p-1.5'
+        onClick={() => setOpen(true)}
+        aria-label='Add project'
+        asChild
+      >
+        <Plus />
       </Button>
 
       <Dialog open={isOpen} onOpenChange={onOpenChange}>

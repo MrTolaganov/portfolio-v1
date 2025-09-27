@@ -28,14 +28,18 @@ export default async function ProjectsPage(params: Params) {
 
   return (
     <div className={'mt-20 px-4 sm:px-8 md:px-16 lg:px-32 min-h-[82vh] mb-8'}>
-      <Filter />
-      <ProjectList projects={projects} />
-      <Pagination page={+searchParams.page! || 1} isNext={isNext} />
+      <div className='flex items-center justify-between gap-4'>
+        <Filter />
+        {session?.currentUser?.isAdmin && <AddProjectForm />}
+      </div>
 
-      {session?.currentUser?.isAdmin && (
-        <div className={'flex justify-center mt-8'}>
-          <AddProjectForm />
-        </div>
+      {projects.length > 0 ? (
+        <>
+          <ProjectList projects={projects} />
+          <Pagination page={+searchParams.page! || 1} isNext={isNext} />
+        </>
+      ) : (
+        <p className='text-center text-lg mt-32 text-muted-foreground'>No projects found.</p>
       )}
     </div>
   )
